@@ -37,9 +37,9 @@
   /* ===== Fonts =====
      英文 SF Pro（系统自带零加载），中文 MiSans（开源加载）。
      字体栈顺序让浏览器逐字符匹配：英文命中 SF Pro，中文跳到 MiSans。 */
-  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "MiSans",
+  --font-sans: "MiSans", -apple-system, "SF Pro Display", "SF Pro Text",
                "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-mono: "SF Mono", "JetBrains Mono", ui-monospace,
+  --font-mono: "MiSans", "SF Mono", "JetBrains Mono", ui-monospace,
                "SFMono-Regular", monospace;
 
   /* ===== Radius ===== */
