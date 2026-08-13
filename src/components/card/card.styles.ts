@@ -8,13 +8,13 @@ import { cva } from "class-variance-authority";
  * - interactive: hover lifts up + shadow + border darkens
  */
 export const cardVariants = cva(
-  "bg-bg border rounded-xl transition-all",
+  "bg-bg border rounded-xl transition-colors transition-transform duration-200",
   {
     variants: {
       variant: {
         default: "border-line",
         interactive:
-          "border-line hover:border-line-strong hover:shadow-md cursor-pointer",
+          "border-line hover:border-ink hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer",
         surface: "bg-surface border-line",
       },
       padding: {
