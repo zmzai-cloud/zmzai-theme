@@ -30,7 +30,7 @@ export function CardSpotlight({
   children,
   className,
   radius = 300,
-  color = "rgba(0, 0, 0, 0.04)",
+  color = "rgba(0, 0, 0, 0.08)",
 }: CardSpotlightProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

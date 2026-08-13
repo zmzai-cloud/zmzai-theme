@@ -10,7 +10,7 @@ import { cva } from "class-variance-authority";
  * - ghost: no border, subtle hover bg
  */
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors transition-transform disabled:pointer-events-none disabled:opacity-40 select-none",
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full font-semibold transition-colors transition-transform disabled:pointer-events-none disabled:opacity-40 select-none",
   {
     variants: {
       variant: {

@@ -51,7 +51,7 @@ export function HoverBorderGradient<T extends ElementType = "div">({
 
       <Component
         className={cn(
-          "group relative overflow-hidden rounded-full border border-line bg-bg p-[1px] transition-colors duration-300 hover:border-transparent",
+          "group relative cursor-pointer overflow-hidden rounded-full border border-line bg-bg transition-colors duration-300 hover:border-transparent",
           containerClassName
         )}
         {...props}
@@ -71,7 +71,7 @@ export function HoverBorderGradient<T extends ElementType = "div">({
           }}
         />
         {/* Inner content with solid background so only the 1px ring shows the sweep */}
-        <span className="relative z-10 block rounded-full bg-bg">
+        <span className="relative z-10 block rounded-full bg-bg px-6 py-2.5">
           {children}
         </span>
       </Component>

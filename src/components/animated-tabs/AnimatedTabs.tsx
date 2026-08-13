@@ -35,7 +35,7 @@ export function AnimatedTabs({ tabs, className, defaultIndex = 0 }: AnimatedTabs
             key={index}
             onClick={() => setActive(index)}
             className={cn(
-              "relative px-4 py-2.5 text-sm font-medium transition-colors",
+              "relative cursor-pointer px-4 py-2.5 text-sm font-medium transition-colors",
               active === index ? "text-ink" : "text-ink-3 hover:text-ink-2"
             )}
           >

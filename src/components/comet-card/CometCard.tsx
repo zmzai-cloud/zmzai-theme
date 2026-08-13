@@ -95,7 +95,7 @@ export function CometCard({ children, className }: CometCardProps) {
         />
 
         <div
-          className="relative z-10"
+          className="relative z-10 p-5"
           style={{ transform: "translateZ(40px)" }}
         >
           {children}
