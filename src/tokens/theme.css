@@ -52,6 +52,21 @@
   /* ===== Motion ===== */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ===== Backward-compat aliases =====
+     Maps old v1 token names → new v2 values.
+     Lets zmzai-agent's 267 existing CSS classes work without modification. */
+  --color-paper:         var(--color-bg);
+  --color-muted:         var(--color-ink-2);
+  --color-rule:          var(--color-ink);
+  --color-surface-strong: var(--color-surface-2);
+  --color-accent-strong: var(--color-ink);
+  --font-serif:          var(--font-sans);
+  --animate-dur-fast:    150ms;
+  --animate-dur-base:    250ms;
+  --animate-dur-slow:    500ms;
+  --radius-card:         var(--radius);
+  --radius-input:        var(--radius-sm);
 }
 
 :root {

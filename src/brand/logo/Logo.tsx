@@ -14,19 +14,21 @@ export interface LogoProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "sr
 /**
  * Logo — zmzai 云朵品牌标志.
  *
- * - 亮色背景用黑色 logo（默认）
- * - 暗色背景用 `inverted`（CSS filter 反白）
+ * 亮色背景用黑色 logo（默认）
+ * 暗色背景用 `inverted`（CSS filter 反白）
  *
  * @example
- * <Logo size={28} />            // 黑色，用于白底导航
+ * <Logo size={28} />          // 黑色，用于白底导航
  * <Logo size={28} inverted />   // 白色，用于黑底 footer
  */
 export const Logo = forwardRef<HTMLImageElement, LogoProps>(
   ({ className, size = 28, inverted, ...props }, ref) => {
+    // Handle both string src (Vite) and StaticImageData (Next.js)
+    const src = typeof logoSrc === "string" ? logoSrc : (logoSrc as { src: string }).src;
     return (
       <img
         ref={ref}
-        src={logoSrc}
+        src={src}
         alt="zmzai"
         width={size}
         height={size}
