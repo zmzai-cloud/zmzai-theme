@@ -1,6 +1,6 @@
 {
   "name": "@zmzai/theme",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": false,
   "type": "module",
   "description": "zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4 + MiSans",
@@ -89,6 +89,10 @@
   },
   "dependencies": {
     "clsx": "^2.1.0",
-    "tailwind-merge": "^2.5.0"
+    "tailwind-merge": "^2.5.0",
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.0",
+    "@radix-ui/react-tooltip": "^1.1.0"
   }
 }
