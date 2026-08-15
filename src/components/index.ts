@@ -13,6 +13,8 @@ export * from "./tooltip";
 export * from "./dialog";
 export * from "./dropdown-menu";
 export * from "./select";
+export * from "./icon-button";
+export * from "./tabs";
 
 // === Interactive Enhancement ===
 export * from "./magnetic-button";
