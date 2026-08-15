@@ -1,6 +1,6 @@
 {
   "name": "@zmzai/theme",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": false,
   "type": "module",
   "description": "zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4 + MiSans",
@@ -86,5 +86,9 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^5.9.0",
     "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.5.0"
   }
 }
