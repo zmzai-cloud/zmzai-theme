@@ -29,8 +29,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileHover={disabled || loading ? undefined : { scale: 1.03 }}
-        whileTap={disabled || loading ? undefined : { scale: 0.98 }}
+        // ghost 是列表项/行选择场景，hover 缩放会跳；仅 primary/secondary 保留微交互
+        whileHover={disabled || loading || variant === "ghost" ? undefined : { scale: 1.03 }}
+        whileTap={disabled || loading || variant === "ghost" ? undefined : { scale: 0.98 }}
         transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
         className={cn(buttonVariants({ variant, size }), className)}
         disabled={disabled || loading}
