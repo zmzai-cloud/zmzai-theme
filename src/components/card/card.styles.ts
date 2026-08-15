@@ -8,7 +8,7 @@ import { cva } from "class-variance-authority";
  * - interactive: hover lifts up + shadow + border darkens
  */
 export const cardVariants = cva(
-  "bg-bg border rounded-xl transition-colors transition-transform duration-200",
+  "bg-bg border rounded-sm transition-colors transition-transform duration-200",
   {
     variants: {
       variant: {

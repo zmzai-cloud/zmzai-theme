@@ -4,13 +4,13 @@ import { cva } from "class-variance-authority";
  * Button variant styles.
  *
  * Design:
- * - All variants use pill radius (rounded-full)
+ * - 锐角 2px（v0.2 暖纸风），hover 轻微缩放
  * - primary: black fill, white text, hover scale + shadow
  * - secondary: transparent, border, hover fill
  * - ghost: no border, subtle hover bg
  */
 export const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full font-semibold transition-colors transition-transform disabled:pointer-events-none disabled:opacity-40 select-none",
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm font-semibold transition-colors transition-transform disabled:pointer-events-none disabled:opacity-40 select-none",
   {
     variants: {
       variant: {

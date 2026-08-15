@@ -13,9 +13,9 @@ export const inputVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-line rounded-lg px-4 py-2.5 text-sm focus:border-ink",
+          "border border-line rounded-sm px-4 py-2.5 text-sm focus:border-ink",
         brutal:
-          "border-2 border-ink rounded-xl px-4 py-3 text-sm shadow-[4px_4px_0_var(--color-ink)] focus:shadow-[6px_6px_0_var(--color-accent)] focus:border-accent focus:-translate-x-px focus:-translate-y-px",
+          "border-2 border-ink rounded-sm px-4 py-3 text-sm",
       },
       size: {
         sm: "text-xs py-2 px-3",
