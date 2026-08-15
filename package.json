@@ -1,25 +1,65 @@
 {
   "name": "@zmzai/theme",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
   "type": "module",
   "description": "zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4 + MiSans",
   "license": "Apache-2.0",
+  "author": "知末智云 <mifindxuan@gmail.com>",
+  "homepage": "https://github.com/zmzai-cloud/zmzai-theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zmzai-cloud/zmzai-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zmzai-cloud/zmzai-theme/issues"
+  },
+  "keywords": [
+    "zmzai",
+    "design-system",
+    "radix-ui",
+    "tailwindcss",
+    "framer-motion",
+    "react",
+    "components"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
     "./tokens": "./src/tokens/theme.css",
     "./fonts": "./src/tokens/fonts.css",
-    "./components": "./src/components/index.ts",
-    "./components/*": "./src/components/*/index.ts",
-    "./brand": "./src/brand/index.ts"
+    "./components": {
+      "types": "./src/components/index.ts",
+      "import": "./src/components/index.ts"
+    },
+    "./components/*": {
+      "types": "./src/components/*/index.ts",
+      "import": "./src/components/*/index.ts"
+    },
+    "./brand": {
+      "types": "./src/brand/index.ts",
+      "import": "./src/brand/index.ts"
+    }
   },
   "files": [
-    "src"
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json --noEmit",
     "typecheck": "tsc --noEmit",
-    "playground": "vite playground --port 5174"
+    "playground": "vite playground --port 5174",
+    "prepublishOnly": "pnpm typecheck"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -46,6 +86,5 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^5.9.0",
     "vite": "^5.4.0"
-  },
-  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
+  }
 }

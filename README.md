@@ -1,6 +1,6 @@
 # @zmzai/theme
 
-zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4 + MiSans.
+zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4。v0.2.0 起为暖色杂志风（Warm paper / warm ink / seal-red，与 zmzai.cloud 主应用同源）；v0.1.x 黑白 Monochrome 已废弃。
 
 ## Quick Start
 
@@ -19,7 +19,7 @@ In your app's `globals.css`:
 ```css
 @import "tailwindcss";
 @import "@zmzai/theme/tokens";    /* Design tokens (@theme block) */
-@import "@zmzai/theme/fonts";     /* MiSans @font-face */
+@import "@zmzai/theme/fonts";     /* Noto Serif SC + JetBrains Mono @font-face */
 
 /* Optional: per-site accent override */
 :root {
@@ -42,9 +42,9 @@ import { Button, Card, Logo, Wordmark } from "@zmzai/theme";
 
 ## Design Language
 
-- **Color**: 纯白底 + 纯黑字, neutral grays. 蓝色 `#2563EB` 只用于动态状态.
-- **Font**: SF Pro (英文) + MiSans (中文), SF Mono (等宽).
-- **Radius**: 8/12/16/20px + pill.
+- **Color**: 暖纸张底 + 暖墨字 + 印章红 accent（oklch，Hallmark Study 锁定）.
+- **Font**: Noto Serif SC 衬线正文（杂志感）+ JetBrains Mono 等宽.
+- **Radius**: 锐利编辑风 2/2/4/6px + pill.
 - **Motion**: framer-motion, exponential ease-out `cubic-bezier(0.16,1,0.3,1)`.
 
 ## Components

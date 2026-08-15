@@ -1,41 +1,44 @@
 /*
- * @zmzai/theme — MiSans Font Faces
+ * @zmzai/theme — Font Faces（v0.2.0 暖色杂志风）
  *
- * 小米开源字体，免费商用（OFL 协议）。
- * 简体中文全子集，通过 jsDelivr CDN 加载 woff2。
+ * Noto Serif SC（衬线正文，杂志感）+ JetBrains Mono（等宽）。
+ * 均通过 jsDelivr CDN 加载 @fontsource 的 woff2（OFL 协议，免费商用）。
  * font-display: swap 保证加载期间用 fallback，加载完无缝切换。
+ *
+ * 注意：简体中文子集较大，Noto Serif SC 仅含 chinese-simplified；
+ * 拉丁字符命中子集内的 latin 部分，无需额外声明。
  *
  * Import in your app's globals.css:
  *   @import "@zmzai/theme/fonts";
  */
 
 @font-face {
-  font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Regular.woff2') format('woff2');
+  font-family: 'Noto Serif SC';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Medium.woff2') format('woff2');
-  font-weight: 500;
+  font-family: 'Noto Serif SC';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-700-normal.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Semibold.woff2') format('woff2');
-  font-weight: 600;
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Bold.woff2') format('woff2');
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
