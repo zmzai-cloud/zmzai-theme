@@ -1,4 +1,4 @@
-// @zmzai/theme — Components barrel (53 components)
+// @zmzai/theme — Components barrel (54 components)
 
 // === Basic ===
 export * from "./button";
@@ -76,6 +76,7 @@ export * from "./card-3d";
 
 // === Utilities ===
 export * from "./terminal";
+export * from "./landing";
 export * from "./keyboard";
 export * from "./notch";
 export * from "./sticky-banner";
