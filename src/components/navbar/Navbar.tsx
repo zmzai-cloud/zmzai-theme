@@ -32,6 +32,8 @@ export interface NavbarProps {
   actions?: ReactNode;
   /** 品牌区右侧的附属徽章（如域名 a.zmzai.cloud） */
   badge?: ReactNode;
+  /** 品牌区点击链接（通常回首页，如 "/"）；不传则品牌区不可点击 */
+  brandHref?: string;
   className?: string;
 }
 
@@ -48,7 +50,13 @@ export interface NavbarProps {
  *   <Link href="/audit" className={navItemClass(pathname === "/audit")}>运行审计</Link>
  * </Navbar>
  */
-export function Navbar({ sublabel, brand, children, actions, badge, className }: NavbarProps) {
+export function Navbar({ sublabel, brand, children, actions, badge, brandHref, className }: NavbarProps) {
+  const brandNode = brand ?? (
+    <span className="inline-flex items-center gap-2">
+      <Logo size={22} />
+      <Wordmark size={16} sublabel={sublabel} />
+    </span>
+  );
   return (
     <header
       className={cn(
@@ -57,11 +65,12 @@ export function Navbar({ sublabel, brand, children, actions, badge, className }:
       )}
     >
       <div className="flex min-w-0 items-center gap-2.5">
-        {brand ?? (
-          <span className="inline-flex items-center gap-2">
-            <Logo size={22} />
-            <Wordmark size={16} sublabel={sublabel} />
-          </span>
+        {brandHref ? (
+          <a href={brandHref} className="inline-flex items-center">
+            {brandNode}
+          </a>
+        ) : (
+          brandNode
         )}
         {badge}
       </div>
