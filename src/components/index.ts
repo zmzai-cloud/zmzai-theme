@@ -7,6 +7,7 @@ export * from "./textarea";
 export * from "./card";
 export * from "./badge";
 export * from "./avatar";
+export * from "./icon";
 
 // === Radix-based ===
 export * from "./tooltip";
@@ -27,6 +28,7 @@ export * from "./stateful-button";
 
 // === Layout & Structure ===
 export * from "./floating-navbar";
+export * from "./navbar";
 export * from "./aceternity-sidebar";
 export * from "./bento-grid";
 export * from "./expandable-card";
