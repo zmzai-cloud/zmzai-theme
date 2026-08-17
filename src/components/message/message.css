@@ -1,0 +1,11 @@
+/* Message — 消息流。token 依赖消费端 @theme。 */
+.zmz-message { display: flex; gap: 0.55rem; }
+.zmz-message-avatar { display: grid; width: 1.5rem; height: 1.5rem; flex: 0 0 1.5rem; place-items: center; border-radius: 50%; background: var(--color-surface-strong); color: var(--color-accent-strong); font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; }
+.zmz-message-avatar.assistant { background: var(--color-accent); color: var(--color-accent-ink); }
+.zmz-message-column { display: grid; min-width: 0; flex: 1; gap: 0.55rem; }
+.zmz-message-meta { display: flex; align-items: baseline; gap: 0.55rem; min-height: 1.5rem; }
+.zmz-message-meta strong { font-size: 0.75rem; font-weight: 700; color: var(--color-ink); }
+.zmz-message-time { margin-left: auto; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.6rem; }
+.zmz-message-content { min-width: 0; color: var(--color-ink); font-size: 0.875rem; line-height: 1.65; overflow-wrap: anywhere; }
+.zmz-message.user .zmz-message-content { padding: 0.65rem 0.8rem; border: 1px solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); }
+.zmz-message-stream { display: grid; gap: 0.9rem; align-content: start; overflow-y: auto; min-height: 0; }

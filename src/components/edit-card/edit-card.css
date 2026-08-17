@@ -1,0 +1,9 @@
+/* EditCard — 文件改动卡。token 依赖消费端 @theme。 */
+.zmz-edit-card { border: 1px solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); overflow: hidden; }
+.zmz-edit-head { display: flex; align-items: center; gap: 0.5rem; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 0.55rem 0.75rem; font: inherit; color: inherit; }
+.zmz-edit-head:hover { background: var(--color-surface-strong); }
+.zmz-edit-path { font-family: var(--font-mono); font-size: 0.75rem; flex: 1; overflow-wrap: anywhere; }
+.zmz-edit-head small { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.625rem; }
+.zmz-edit-body { overflow: hidden; padding: 0 0.6rem 0.6rem; }
+.zmz-chevron { transition: transform 0.15s var(--ease-out); }
+.zmz-chevron.open { transform: rotate(180deg); }

@@ -1,0 +1,10 @@
+/* Reasoning — 思考过程折叠。token 依赖消费端 @theme。 */
+@keyframes zmz-reasoning-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.75); } }
+
+.zmz-reasoning { border-left: 2px solid var(--color-line); padding-left: 0.6rem; }
+.zmz-reasoning-toggle { display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: 0; cursor: pointer; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-muted); padding: 0.15rem 0; }
+.zmz-reasoning-dot { display: inline-block; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--color-muted); }
+.zmz-reasoning-dot.live { background: var(--color-accent); animation: zmz-reasoning-pulse 1.2s ease-in-out infinite; }
+.zmz-chevron { transition: transform 0.15s var(--ease-out); }
+.zmz-chevron.open { transform: rotate(180deg); }
+.zmz-reasoning-body { margin: 0.4rem 0 0; overflow: hidden; font-size: 0.75rem; color: var(--color-muted); white-space: pre-wrap; }
