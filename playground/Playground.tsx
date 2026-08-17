@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "../src/components/button";
 import { Input } from "../src/components/input";
 import { Textarea } from "../src/components/textarea";
@@ -8,6 +9,8 @@ import { Tooltip, TooltipProvider } from "../src/components/tooltip";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "../src/components/dialog";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "../src/components/dropdown-menu";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../src/components/select";
+import { ModelSelector } from "../src/components/model-selector";
+import type { ModelSelectorData } from "../src/components/model-selector";
 import { Logo } from "../src/brand/logo";
 import { Wordmark } from "../src/brand/wordmark";
 
@@ -121,6 +124,11 @@ export function Playground() {
                 <SelectItem value="terra">gpt-5.6-terra</SelectItem>
               </SelectContent>
             </Select>
+          </Section>
+
+          {/* ModelSelector */}
+          <Section title="ModelSelector">
+            <ModelSelectorDemo />
           </Section>
 
           {/* Badge + Avatar */}
@@ -428,5 +436,51 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       <h2 className="mb-6 text-2xl font-semibold tracking-tight">{title}</h2>
       {children}
     </section>
+  );
+}
+
+const mockData: ModelSelectorData = {
+  featured: [
+    { id: "gpt-5.6-sol", name: "GPT-5.6-Sol", description: "速度、质量和成本表现均衡的模型", channel: "openai" },
+    { id: "deepseek-v4-pro", name: "DeepSeek-V4-Pro", description: "用于处理复杂任务的模型", channel: "deepseek" },
+    { id: "deepseek-v4-flash", name: "DeepSeek-V4-Flash", description: "兼具快速响应与低消耗的模型", channel: "deepseek" },
+  ],
+  channels: [
+    {
+      id: "openai",
+      name: "OpenAI",
+      models: [
+        { id: "gpt-5.6-sol", name: "gpt-5.6-sol", meta: { price: "入 3 / 出 12 元/1k" } },
+        { id: "gpt-5.6-terra", name: "gpt-5.6-terra", meta: { price: "入 6 / 出 24 元/1k" } },
+        { id: "gpt-5.6-luna", name: "gpt-5.6-luna", meta: { price: "入 1.5 / 出 6 元/1k" } },
+      ],
+    },
+    {
+      id: "deepseek",
+      name: "DeepSeek",
+      models: [
+        { id: "deepseek-v4-flash", name: "deepseek-v4-flash", meta: { price: "入 0.3 / 出 1.2 元/1k" } },
+        { id: "deepseek-v4-pro", name: "deepseek-v4-pro", meta: { price: "入 2 / 出 8 元/1k" } },
+      ],
+    },
+  ],
+};
+
+function ModelSelectorDemo() {
+  const [value, setValue] = useState({ channel: "openai", model: "gpt-5.6-sol" });
+  return (
+    <div className="space-y-4">
+      <div>
+        <p className="mb-2 text-sm text-ink-2">基础用法</p>
+        <ModelSelector data={mockData} value={value} onChange={setValue} placeholder="选择模型" />
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-ink-2">带搜索</p>
+        <ModelSelector data={mockData} value={value} onChange={setValue} searchable placeholder="选择模型" />
+      </div>
+      <div className="rounded-lg border border-line bg-surface p-4 font-mono text-xs text-ink-2">
+        选中: channel={value.channel} model={value.model}
+      </div>
+    </div>
   );
 }

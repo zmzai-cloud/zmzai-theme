@@ -85,3 +85,4 @@ export * from "./loader";
 export * from "./skeleton";
 export * from "./empty-state";
 export * from "./carousel";
+export * from "./model-selector";
