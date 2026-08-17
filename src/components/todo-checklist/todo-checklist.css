@@ -1,0 +1,35 @@
+/* TodoChecklist — Task Plan 卡。token 依赖消费端 @theme。 */
+@keyframes zmz-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.zmz-todo { margin: 0 0 1rem; padding: 0.75rem 0.8rem 0.7rem; border: 1px solid var(--color-line); border-left: 2px solid var(--color-ink); border-radius: var(--radius); background: color-mix(in oklab, var(--color-surface) 94%, var(--color-bg)); }
+.zmz-todo-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.55rem; }
+.zmz-todo-heading { display: flex; align-items: baseline; gap: 0.55rem; }
+.zmz-todo-kicker { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.zmz-todo-progress { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.62rem; }
+.zmz-todo-progress b { color: var(--color-ink); font-weight: 700; }
+.zmz-todo-summary { display: flex; justify-content: space-between; gap: 1rem; min-width: 0; margin-bottom: 0.45rem; color: var(--color-ink); font-size: 0.78rem; line-height: 1.35; }
+.zmz-todo-summary span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zmz-todo-summary span:last-child { flex: 0 0 auto; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.6rem; }
+.zmz-todo-progressbar { height: 3px; margin-bottom: 0.65rem; overflow: hidden; background: var(--color-surface-strong); }
+.zmz-todo-progressbar span { display: block; height: 100%; background: var(--color-accent); transition: width 220ms var(--ease-out); }
+.zmz-todo-list { position: relative; display: grid; gap: 0; margin: 0; padding: 0 0 0 0.15rem; list-style: none; }
+.zmz-task-node { position: relative; }
+.zmz-task-node:not(:last-child)::before { position: absolute; z-index: 0; top: 1.35rem; bottom: -0.1rem; left: 0.47rem; width: 1px; background: var(--color-line); content: ""; }
+.zmz-task-node-trigger { position: relative; z-index: 1; display: grid; width: 100%; min-height: 2rem; grid-template-columns: 1rem minmax(0, 1fr) auto auto; align-items: center; gap: 0.45rem; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-ink); padding: 0.35rem 0.25rem; text-align: left; cursor: pointer; transition: background 0.15s var(--ease-out); }
+.zmz-task-node-trigger:hover { background: var(--color-surface); }
+.zmz-task-node-trigger:disabled { cursor: default; }
+.zmz-task-node-trigger:disabled:hover { background: transparent; }
+.zmz-task-node-marker { display: inline-flex; width: 0.9rem; height: 0.9rem; align-items: center; justify-content: center; border: 1px solid var(--color-line); border-radius: 50%; background: var(--color-surface); color: var(--color-success); }
+.zmz-task-node.in_progress .zmz-task-node-marker { border-color: var(--color-accent); }
+.zmz-task-node-copy { display: flex; min-width: 0; align-items: baseline; gap: 0.45rem; }
+.zmz-task-node-copy strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.76rem; font-weight: 600; }
+.zmz-task-node-index { flex: 0 0 auto; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.55rem; }
+.zmz-task-node.completed .zmz-task-node-copy strong { color: var(--color-muted); text-decoration: line-through; }
+.zmz-task-node.in_progress .zmz-task-node-copy strong { color: var(--color-accent-strong); }
+.zmz-todo-spinner { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--color-accent); animation: zmz-pulse 1s var(--ease-out) infinite; }
+.zmz-chevron { transition: transform 0.15s var(--ease-out); }
+.zmz-chevron.open { transform: rotate(180deg); }
+.zmz-task-executions { position: relative; display: grid; gap: 0; margin: 0 0 0.15rem 1.3rem; padding: 0.05rem 0 0.1rem 1rem; }
+.zmz-task-executions::before { position: absolute; top: 0; bottom: 0.2rem; left: 0.35rem; width: 1px; background: var(--color-line); content: ""; }
+.zmz-task-executions .tool-card::before { left: -0.65rem; width: 0.65rem; }
+.zmz-task-executions .tool-card-detail { margin-left: 1.3rem; }

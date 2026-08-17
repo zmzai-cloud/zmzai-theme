@@ -1,0 +1,7 @@
+/* PermissionCard — 内联审批卡。token 依赖消费端 @theme。 */
+.zmz-permission-card { border: 1px solid var(--color-accent); border-radius: var(--radius); padding: 0.85rem 1rem; background: color-mix(in oklab, var(--color-accent) 4%, var(--color-surface)); margin: 0.5rem 0; }
+.zmz-permission-head { display: flex; align-items: center; gap: 0.6rem; }
+.zmz-permission-head strong { font-family: var(--font-mono); font-size: 0.8125rem; overflow-wrap: anywhere; }
+.zmz-permission-note { margin: 0.5rem 0 0.75rem; font-size: 0.8125rem; color: var(--color-muted); }
+.zmz-permission-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.zmz-permission-feedback { flex: 1 1 12rem; min-width: 0; }

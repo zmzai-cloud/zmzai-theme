@@ -1,0 +1,22 @@
+/* DiffView — Codex 式彩色 unified diff。token 依赖消费端 @theme（ink/line/surface/accent/success）。 */
+.diff-canvas { display: grid; gap: 0.85rem; }
+.diff-summary { display: flex; justify-content: space-between; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-muted); }
+.diff-summary-stats { display: inline-flex; gap: 0.5rem; }
+.diff-add-count { color: var(--color-success); font-style: normal; }
+.diff-del-count { color: #b03a28; font-style: normal; }
+.diff-file { border: 1px solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); overflow: hidden; }
+.diff-file-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-line); background: var(--color-surface-strong); }
+.diff-file-path { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.diff-file-stats { display: inline-flex; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.625rem; }
+.diff-hunk { display: grid; }
+.diff-line { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); font-family: var(--font-mono); font-size: 0.65625rem; line-height: 1.6; }
+.diff-gutter { text-align: center; user-select: none; }
+.diff-text { padding-left: 0.5rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.diff-line.hunk { background: color-mix(in oklab, var(--color-accent-ink) 82%, var(--color-accent)); color: var(--color-accent-strong); }
+.diff-line.add { background: color-mix(in oklab, var(--color-success) 16%, var(--color-surface)); color: var(--color-ink); }
+.diff-line.remove { background: color-mix(in oklab, #b03a28 14%, var(--color-surface)); color: var(--color-ink); }
+.diff-line.meta { color: var(--color-muted); background: var(--color-surface); }
+.diff-line.context { color: var(--color-muted); background: var(--color-surface); }
+.diff-line.add .diff-gutter { color: var(--color-success); }
+.diff-line.remove .diff-gutter { color: #b03a28; }
+.diff-preview { max-height: min(48dvh, 34rem); margin: 0; overflow: auto; padding: 0.75rem; border: 1px solid var(--color-line); background: var(--color-ink); color: var(--color-paper); font-family: var(--font-mono); font-size: 0.65625rem; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
