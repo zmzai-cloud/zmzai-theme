@@ -361,11 +361,9 @@
   margin-top: 1px;
 }
 
-/* ── Status badge（live 脉冲 / building 流光 / planned 虚线） ── */
-.status-pulse {
-  position: relative;
-}
-
+/* ── Status badge（live 脉冲 / building 流光 / planned 虚线） ──
+   注意：.status-pulse 不能写 position —— 无 layer CSS 会覆盖 Tailwind
+   utilities 的 absolute inset-0，把脉冲层压成椭圆。定位由组件 className 提供。 */
 .status-pulse::after {
   content: "";
   position: absolute;
