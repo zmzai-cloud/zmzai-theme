@@ -1,16 +1,39 @@
 /*
- * @zmzai/theme — Font Faces（v0.2.0 暖色杂志风）
+ * @zmzai/theme — Font Faces（v0.2.9 修正字体）
  *
- * Noto Serif SC（衬线正文，杂志感）+ JetBrains Mono（等宽）。
- * 均通过 jsDelivr CDN 加载 @fontsource 的 woff2（OFL 协议，免费商用）。
+ * MiSans（无衬线正文，现代感主字体）+ JetBrains Mono（等宽）。
+ * Noto Serif SC 保留为 serif 栈 fallback（标题/杂志元素可选）。
+ * MiSans 通过 jsDelivr gh CDN 加载 woff2；Noto Serif SC 走 @fontsource。
  * font-display: swap 保证加载期间用 fallback，加载完无缝切换。
  *
- * 注意：简体中文子集较大，Noto Serif SC 仅含 chinese-simplified；
- * 拉丁字符命中子集内的 latin 部分，无需额外声明。
+ * ⚠️ v0.2.0~0.2.8 的坑：Noto Serif SC 在 next/font 里只声明 latin 子集，
+ * 中文没有字形 → 全局中文 fallback 到系统宋体（Songti SC），观感陈旧。
+ * 0.2.9 起 --font-sans/--font-serif 默认指 MiSans（无衬线，中文齐全）。
  *
  * Import in your app's globals.css:
  *   @import "@zmzai/theme/fonts";
  */
+
+@font-face {
+  font-family: 'MiSans';
+  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MiSans';
+  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/misans@main/raw/Normal/woff2/MiSans-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 
 @font-face {
   font-family: 'Noto Serif SC';

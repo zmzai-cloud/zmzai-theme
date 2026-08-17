@@ -36,8 +36,10 @@
   --color-dark-line:     #27272A;
 
   /* ===== Fonts =====
-     衬线正文字体（Noto Serif SC，杂志感）+ JetBrains Mono 等宽。 */
-  --font-sans: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+     无衬线主字体（MiSans，中文现代感）+ Noto Serif SC 标题衬线 + JetBrains Mono 等宽。
+     v0.2.0~0.2.8 曾以 Noto Serif SC 为 sans，但 next/font 只加载 latin 子集、
+     中文 fallback 系统宋体观感陈旧——0.2.9 改回 MiSans。 */
+  --font-sans: "MiSans", "Noto Serif SC", "Source Han Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
