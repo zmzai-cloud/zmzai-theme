@@ -1,7 +1,7 @@
 /* @zmzai/theme — Landing kit
    open-design.ai 风格落地页组件样式。
-   依赖消费端 @theme token：--color-paper/ink/ink-2/muted/line/accent/accent-ink/
-   surface/radius-*/ease-out/ease-out-expo/font-mono/font-serif。 */
+   依赖消费端 @theme token：--color-paper、ink、ink-2、muted、line、accent、
+   accent-ink、surface、radius、ease-out、ease-out-expo、font-mono、font-serif。 */
 
 /* ── Capsule buttons（solid/outline 胶囊按钮） ── */
 .btn-outline {
