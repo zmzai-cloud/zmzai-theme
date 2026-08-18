@@ -1,6 +1,6 @@
 {
   "name": "@zmzai/theme",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "private": false,
   "type": "module",
   "description": "zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4 + MiSans",

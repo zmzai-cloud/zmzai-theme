@@ -57,6 +57,7 @@ export * from "./markdown";
 export * from "./markdown";
 export * from "./diff-view";
 export * from "./tool-card";
+export * from "./subtask";
 export * from "./todo-checklist";
 export * from "./permission-card";
 
