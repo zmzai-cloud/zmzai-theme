@@ -1,9 +1,10 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { cn } from "../../utils/cn";
 import { Logo } from "../../brand/logo";
 import { Wordmark } from "../../brand/wordmark";
+import { Icon } from "../icon/Icon";
 
 /**
  * navItemClass — 导航项统一样式（全域导航一致）。
@@ -34,6 +35,8 @@ export interface NavbarProps {
   badge?: ReactNode;
   /** 品牌区点击链接（通常回首页，如 "/"）；不传则品牌区不可点击 */
   brandHref?: string;
+  /** 开启移动端菜单：<md 断点时导航与操作区收进汉堡下拉（默认 false 保持横向滚动） */
+  mobileMenu?: boolean;
   className?: string;
 }
 
@@ -50,13 +53,37 @@ export interface NavbarProps {
  *   <Link href="/audit" className={navItemClass(pathname === "/audit")}>运行审计</Link>
  * </Navbar>
  */
-export function Navbar({ sublabel, brand, children, actions, badge, brandHref, className }: NavbarProps) {
+export function Navbar({ sublabel, brand, children, actions, badge, brandHref, mobileMenu = false, className }: NavbarProps) {
+  const [open, setOpen] = useState(false);
+
+  // Esc 关闭面板
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const brandNode = brand ?? (
     <span className="inline-flex items-center gap-2">
       <Logo size={22} />
       <Wordmark size={16} sublabel={sublabel} />
     </span>
   );
+  const nav = children ? (
+    <nav
+      className="flex min-w-0 items-center gap-1 overflow-x-auto"
+      aria-label="主导航"
+    >
+      {children}
+    </nav>
+  ) : null;
+  const actionBox = actions ? (
+    <div className="flex shrink-0 items-center gap-2.5">{actions}</div>
+  ) : null;
+
   return (
     <header
       className={cn(
@@ -74,12 +101,54 @@ export function Navbar({ sublabel, brand, children, actions, badge, brandHref, c
         )}
         {badge}
       </div>
-      {children ? (
-        <nav className="flex min-w-0 items-center gap-1 overflow-x-auto" aria-label="主导航">
-          {children}
-        </nav>
-      ) : null}
-      {actions ? <div className="flex shrink-0 items-center gap-2.5">{actions}</div> : null}
+
+      {mobileMenu ? (
+        <>
+          {/* 桌面端：导航 + 操作区原样 */}
+          <div className="hidden min-w-0 items-center gap-2.5 md:flex">
+            {nav}
+            {actionBox}
+          </div>
+
+          {/* 移动端：汉堡按钮 + 下拉面板（点击面板内任意处关闭） */}
+          <div className="relative md:hidden">
+            <button
+              type="button"
+              aria-label={open ? "关闭菜单" : "打开菜单"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+            >
+              <Icon name={open ? "cross" : "menu"} size={16} />
+            </button>
+            {open ? (
+              <div
+                onClick={() => setOpen(false)}
+                className="absolute right-0 top-full mt-2 flex w-60 flex-col gap-1 rounded-xl border border-line bg-paper p-2 shadow-lg"
+              >
+                {children ? (
+                  <nav
+                    className="flex flex-col items-stretch gap-1"
+                    aria-label="主导航"
+                  >
+                    {children}
+                  </nav>
+                ) : null}
+                {actions ? (
+                  <div className="mt-1 flex flex-col items-stretch gap-1 border-t border-line pt-2">
+                    {actions}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+        </>
+      ) : (
+        <>
+          {nav}
+          {actionBox}
+        </>
+      )}
     </header>
   );
 }

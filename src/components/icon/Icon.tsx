@@ -28,6 +28,7 @@ const paths: Record<string, { d: string; fill?: boolean }> = {
   external: { d: "M4 12V4h4M4 12L12 4M8 3.5h4.5V8" },
 
   // === 导航/语义 ===
+  menu: { d: "M3.5 5h9M3.5 8h9M3.5 11h9" },
   home: { d: "M2.5 7.5L8 3l5.5 4.5M4 6.5V13.5h8V6.5" },
   grid: { d: "M3.5 3.5h3.5v3.5H3.5zM9 3.5h3.5v3.5H9zM3.5 9h3.5v3.5H3.5zM9 9h3.5v3.5H9z" },
   key: { d: "M11 3.5a3.5 3.5 0 1 1-2 6.3L5.5 13.3 4 11.8l1.4-1.4L4 8.9 5 8l2.2 2.2A3.5 3.5 0 0 1 11 3.5zM11.8 6.2v.01" },
