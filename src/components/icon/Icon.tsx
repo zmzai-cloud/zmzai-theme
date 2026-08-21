@@ -47,7 +47,26 @@ const paths: Record<string, { d: string; fill?: boolean }> = {
   bolt: { d: "M9 2.5L4 9h3.5L7 13.5 12 7H8.5z" },
   shield: { d: "M8 2.5l5 2v4c0 3-2 5-5 6-3-1-5-3-5-6v-4zM6 8.5l1.5 1.5L10 7.5" },
   sparkle: { d: "M8 2.5l1.3 4.2L13.5 8l-4.2 1.3L8 13.5l-1.3-4.2L2.5 8l4.2-1.3z" },
+  "arrow-up": { d: "M8 12.5v-8M5 7.5L8 4.5l3 3" },
+  "arrow-up-right": { d: "M4 12L12 4M7 3.5h5.5V9" },
+  "arrow-left": { d: "M12.5 8h-8M7.5 5L4.5 8l3 3" },
+  search: { d: "M7 10.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM9.8 9.8l3.2 3.2" },
+  message: { d: "M3 3.5h10v7H6l-3 2.5z" },
+  folder: { d: "M2.5 4.5h4l1.5 2h5.5v6h-11z" },
+  archive: { d: "M2.5 3.5h11V6h-11zM3.5 6.5v7h9v-7M6.5 9h3" },
+  clock: { d: "M8 3a5 5 0 1 1 0 10A5 5 0 0 1 8 3zM8 5.5V8l2 1.5" },
+  file: { d: "M4 2.5h5l3 3v8H4zM9 2.5v3h3" },
+  "file-text": { d: "M4 2.5h5l3 3v8H4zM9 2.5v3h3M6 8.5h4M6 10.5h4" },
+  eye: { d: "M1.8 8S4 4.5 8 4.5 14.2 8 14.2 8 12 11.5 8 11.5 1.8 8 1.8 8zM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" },
+  "eye-off": { d: "M2.5 3l11 10M1.8 8S4 4.5 8 4.5c.6 0 1.2.1 1.7.3M14.2 8s-.7 1.2-2 2.2M6.5 6.9A1.5 1.5 0 0 0 8 9.5" },
+  play: { d: "M5.5 3.5l7 4.5-7 4.5z", fill: true },
+  pause: { d: "M5.5 3.5v9M10.5 3.5v9" },
+  list: { d: "M5.5 4h8M5.5 8h8M5.5 12h8M3 4h.01M3 8h.01M3 12h.01" },
+  sparkles: { d: "M8 2.5l1.3 4.2L13.5 8l-4.2 1.3L8 13.5l-1.3-4.2L2.5 8l4.2-1.3z" },
+  warning: { d: "M8 3l5.5 9.5h-11zM8 7v2.5M8 11.4v.01" },
+  user: { d: "M8 3.2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3.5 13c.6-2.6 2.4-4 4.5-4s3.9 1.4 4.5 4" },
 };
+
 
 export type IconName = keyof typeof paths;
 
