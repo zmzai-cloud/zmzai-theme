@@ -4,7 +4,8 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
 import { cn } from "../../utils/cn";
 
 export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "ref"> {
-  /** 尺寸：sm=h-6 md=h-7 lg=h-8（密集工具条场景，不做 hover 缩放） */
+  /** 尺寸：sm=h-6 md=h-7 lg=h-8（密集工具条场景，不做 hover 缩放）。
+ *  触控热区通过 ::after(-inset-2) 扩到 ≥40px，视觉尺寸不变。 */
   size?: "sm" | "md" | "lg";
   /** 视觉：ghost=透明 hover 背景；quiet=无 hover 背景只有颜色变化 */
   tone?: "ghost" | "quiet";
@@ -29,7 +30,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         aria-label={label}
         title={label}
         className={cn(
-          "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sm text-ink-3 transition-colors disabled:pointer-events-none disabled:opacity-40",
+          "relative inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sm text-ink-3 transition-colors after:absolute after:-inset-2 after:content-[''] disabled:pointer-events-none disabled:opacity-40",
           size === "sm" && "h-6 w-6",
           size === "md" && "h-7 w-7",
           size === "lg" && "h-8 w-8",
