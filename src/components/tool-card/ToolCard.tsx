@@ -59,7 +59,8 @@ export function ToolCard({ call, sessionIdle = false }: { call: ToolCall; sessio
 /**
  * ToolGroup — 连续工具调用的折叠组（G1 防淹没）。
  *
- * 运行中/有失败/单条时自动展开；多条完成时折叠为一条摘要行。
+ * 仅运行中自动展开；失败/单条/历史组一律折叠为一条可点击的摘要行，
+ * 避免长会话里"运行了 1 个工具"头 + 展开卡的双倍瀑布。
  *
  * @example
  * <ToolGroup calls={toolCalls} sessionIdle={idle} />
@@ -69,9 +70,17 @@ export function ToolGroup({ calls, sessionIdle = false }: { calls: ToolCall[]; s
   const running = calls.filter((c) => c.state.status === "running" || c.state.status === "pending");
   const failed = calls.filter((c) => c.state.status === "error" || (sessionIdle && (c.state.status === "running" || c.state.status === "pending")));
   const done = calls.filter((c) => c.state.status === "completed");
-  const autoExpand = running.length > 0 || failed.length > 0 || calls.length <= 1;
+  const autoExpand = running.length > 0;
   const open = expanded || autoExpand;
   const glyph = failed.length > 0 ? "cross" : running.length > 0 ? "chevron-down" : "check";
+  const single = calls.length === 1 ? calls[0] : undefined;
+  const singleTitle = single
+    ? single.state.status === "completed"
+      ? (single.state.title ?? single.tool)
+      : single.state.status === "error"
+        ? single.state.error
+        : single.tool
+    : null;
   const summary = [
     running.length > 0 && `${running.length} 个进行中`,
     failed.length > 0 && `${failed.length} 个失败`,
@@ -81,8 +90,8 @@ export function ToolGroup({ calls, sessionIdle = false }: { calls: ToolCall[]; s
     <div className="zmz-tool-group">
       <button type="button" className="zmz-tool-group-trigger" aria-expanded={open} onClick={() => setExpanded((value) => !value)} disabled={autoExpand}>
         <span className="tool-card-glyph" aria-hidden><Icon name={glyph} size={12} /></span>
-        <span className="zmz-tool-group-label">运行了 {calls.length} 个工具</span>
-        {!autoExpand && <small>{summary}</small>}
+        <span className="zmz-tool-group-label">{single ? singleTitle : `运行了 ${calls.length} 个工具`}</span>
+        <small>{single ? (single.state.status === "completed" ? "完成" : single.state.status === "error" ? "失败" : "进行中") : summary}</small>
         <Icon name="chevron-down" size={12} className={open ? "tool-card-chevron open" : "tool-card-chevron"} />
       </button>
       {open && (
