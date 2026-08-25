@@ -6,32 +6,33 @@
  *   @import "@zmzai/theme/tokens";
  *   @import "@zmzai/theme/fonts";
  *
- * v0.2.0 起为暖色杂志风（Warm paper, warm ink, seal-red accent），
- * 与 zmzai.cloud 主应用（Hallmark Study）同源。v0.1.x 是黑白
- * Monochrome 风，已废弃。
+ * v0.6.0 起为纯白 + 荧光绿（Pure white + fluorescent green），
+ * 与 zmzai.cloud 主应用（Hallmark Study）同源。
+ * v0.2.0~0.5.x 为暖色杂志风（Warm paper + seal-red，已弃用）。
+ * v0.1.x 黑白 Monochrome 风，更早废弃。
  */
 
 @theme {
   /* ===== Color =====
-     暖纸张底 + 暖墨字 + 印章红 accent（Hallmark Study 锁定）。
-     accent 用于强调/链接/审批等，red 系有印章感。 */
-  --color-bg:            oklch(0.95 0.012 85);
-  --color-surface:       oklch(0.97 0.008 85);
-  --color-surface-2:     oklch(0.92 0.014 80);
-  --color-ink:           oklch(0.18 0.011 40);
-  --color-ink-2:         oklch(0.47 0.013 55);
+     纯白底 + 荧光绿 accent（与 zmzai.cloud 主应用同源，Hallmark Study 锁定）。
+     accent 为荧光绿（oklch 0.78 0.220 142）；accent-ink 为深色（用于绿底上的字）。 */
+  --color-bg:            oklch(0.995 0.002 90);
+  --color-surface:       oklch(0.98 0.004 90);
+  --color-surface-2:     oklch(0.95 0.006 88);
+  --color-ink:           oklch(0.15 0.010 30);
+  --color-ink-2:         oklch(0.50 0.012 55);
   --color-ink-3:         oklch(0.55 0.012 55);
-  --color-line:          oklch(0.86 0.012 80);
-  --color-line-strong:   oklch(0.18 0.011 40);
-  --color-accent:        oklch(0.46 0.150 27);
-  --color-accent-ink:    oklch(0.97 0.008 85);
-  --color-success:       oklch(0.52 0.090 160);
-  --color-danger:        oklch(0.42 0.155 27);
-  --color-warning:       oklch(0.65 0.10 80);
+  --color-line:          oklch(0.90 0.005 88);
+  --color-line-strong:   oklch(0.15 0.010 30);
+  --color-accent:        oklch(0.78 0.220 142);
+  --color-accent-ink:    oklch(0.15 0.010 30);
+  --color-success:       oklch(0.72 0.180 145);
+  --color-danger:        oklch(0.55 0.200 25);
+  --color-warning:       oklch(0.80 0.150 90);
 
   /* Dark surface — 仅用于代码块/preview，不是全局 dark mode */
   --color-dark-bg:       #0A0A0A;
-  --color-dark-surface:  #171717;
+  --color-dark-surface:  #141414;
   --color-dark-ink:      #FAFAFA;
   --color-dark-line:     #27272A;
 
@@ -62,7 +63,7 @@
   --color-muted:         var(--color-ink-2);
   --color-rule:          var(--color-ink);
   --color-surface-strong: var(--color-surface-2);
-  --color-accent-strong: oklch(0.39 0.150 27);
+  --color-accent-strong: oklch(0.68 0.220 142);
   --animate-dur-fast:    150ms;
   --animate-dur-base:    250ms;
   --animate-dur-slow:    500ms;
@@ -100,8 +101,8 @@
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: #fff;
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
   }
 
   :focus-visible {
