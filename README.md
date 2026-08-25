@@ -9,7 +9,7 @@ zmzai 全品牌设计系统 — Radix UI + framer-motion + Tailwind v4。v0.2.0 
 ```bash
 pnpm add @zmzai/theme
 # or via git:
-pnpm add @zmzai/theme@github:Ulanxx/zmzai-theme
+pnpm add @zmzai/theme@github:zmzai-cloud/zmzai-theme
 ```
 
 ### Import tokens + fonts
