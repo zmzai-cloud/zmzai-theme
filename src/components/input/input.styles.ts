@@ -13,14 +13,14 @@ export const inputVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-line rounded-sm px-4 py-2.5 text-sm focus:border-ink",
+          "h-10 border border-line rounded-sm px-4 text-sm focus:border-ink",
         brutal:
-          "border-2 border-ink rounded-sm px-4 py-3 text-sm",
+          "h-10 border-2 border-ink rounded-sm px-4 text-sm",
       },
       size: {
-        sm: "text-xs py-2 px-3",
-        md: "text-sm py-2.5 px-4",
-        lg: "text-base py-3 px-5",
+        sm: "h-8 text-xs px-3",
+        md: "h-10 text-sm px-4",
+        lg: "h-12 text-base px-5",
       },
     },
     defaultVariants: {

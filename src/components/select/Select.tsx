@@ -18,7 +18,7 @@ export function SelectTrigger({
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        "inline-flex h-9 items-center justify-between gap-2 rounded-sm border border-line bg-bg px-3 py-2 text-sm font-medium text-ink outline-none transition-colors",
+        "inline-flex h-10 items-center justify-between gap-2 rounded-sm border border-line bg-bg px-4 text-sm font-medium text-ink outline-none transition-colors",
         "hover:border-ink/40 focus:border-ink data-[placeholder]:text-ink-3",
         className
       )}
