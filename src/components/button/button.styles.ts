@@ -4,22 +4,33 @@ import { cva } from "class-variance-authority";
  * Button variant styles.
  *
  * Design:
- * - 锐角 2px（v0.2 暖纸风），hover 轻微缩放
+ * - 锐角 2px（v0.2 暖纸风沿用的锐利语言），hover 阴影 / active 微缩
  * - primary: black fill, white text, hover scale + shadow
  * - secondary: transparent, border, hover fill
  * - ghost: no border, subtle hover bg
+ * - danger: red fill
+ *
+ * States discipline (v0.6.1 起，见 docs/states-discipline.md):
+ * - focus-visible: 2px ink ring + offset，立即可见不做动画（键盘可达性硬性要求）
+ * - active: 所有可按压 variant 统一 scale 反馈（此前仅 primary/danger 有）
+ * - disabled: opacity-40 + pointer-events-none
+ * - loading/error/success 语义态由 StatefulButton 承担（error 呈现待补）
  */
 export const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm font-semibold transition-colors transition-transform disabled:pointer-events-none disabled:opacity-40 select-none",
+  [
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm font-semibold transition-colors transition-transform select-none",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
+    "disabled:pointer-events-none disabled:opacity-40",
+  ].join(" "),
   {
     variants: {
       variant: {
         primary:
           "bg-ink text-white hover:shadow-md active:scale-[0.98]",
         secondary:
-          "border border-line text-ink hover:border-ink hover:bg-surface-2",
+          "border border-line text-ink hover:border-ink hover:bg-surface-2 active:scale-[0.98]",
         ghost:
-          "text-ink-2 hover:bg-surface-2 hover:text-ink",
+          "text-ink-2 hover:bg-surface-2 hover:text-ink active:scale-[0.98]",
         danger:
           "bg-danger text-white hover:shadow-md active:scale-[0.98]",
       },
