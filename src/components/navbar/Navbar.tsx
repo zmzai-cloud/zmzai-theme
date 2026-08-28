@@ -9,7 +9,7 @@ import { Icon } from "../icon/Icon";
 /**
  * navItemClass — 导航项统一样式（全域导航一致）。
  *
- * active 时深墨 pill 高亮（bg-ink text-white），其余 hover 浮现。
+ * active 时深墨 pill 高亮（bg-ink text-bg，深浅主题自适应），其余 hover 浮现。
  * 链接本身由调用方渲染（Next.js 用 next/link，保持 SPA 导航），
  * 只要都套这个 className，任何站点的导航观感就完全一致。
  */
@@ -17,7 +17,7 @@ export function navItemClass(active: boolean): string {
   return cn(
     "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
     active
-      ? "bg-ink text-white"
+      ? "bg-ink text-bg"
       : "text-ink-2 hover:bg-surface-2 hover:text-ink"
   );
 }

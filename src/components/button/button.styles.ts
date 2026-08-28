@@ -26,7 +26,8 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-ink text-white hover:shadow-md active:scale-[0.98]",
+          // 反色按钮：bg-ink 上用 bg 色作文字（浅色=白、深色=黑），硬编码 text-white 在深色主题下不可读
+          "bg-ink text-bg hover:shadow-md active:scale-[0.98]",
         secondary:
           "border border-line text-ink hover:border-ink hover:bg-surface-2 active:scale-[0.98]",
         ghost:

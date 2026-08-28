@@ -145,7 +145,7 @@ export function VanishInput({
       <button
         type="submit"
         aria-label="提交"
-        className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-white transition-transform hover:scale-105 active:scale-95"
+        className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-bg transition-transform hover:scale-105 active:scale-95"
       >
         <svg
           className="h-3.5 w-3.5"
