@@ -6,69 +6,134 @@
  *   @import "@zmzai/theme/tokens";
  *   @import "@zmzai/theme/fonts";
  *
- * v0.6.0 起为纯白 + 荧光绿（Pure white + fluorescent green），
- * 与 zmzai.cloud 主应用（Hallmark Study）同源。
- * v0.2.0~0.5.x 为暖色杂志风（Warm paper + seal-red，已弃用）。
- * v0.1.x 黑白 Monochrome 风，更早废弃。
+ * v0.7.0 「墨骨 Ink Frame」—— 结构色与语义色分离
+ *   · accent 从荧光绿改为墨黑，只承担 UI 结构（按钮 / 焦点 / 选中 / 硬线）
+ *   · 绿退为品牌色 + 语义色（成功 / 运行中），不再当万能强调色
+ *   · 中性灰阶统一色相 hue 265、彩度压到 0.008 以下，不再泛脏
+ *   · 补齐 elevation 阴影体系（此前包内一个 shadow token 都没有）
+ *
+ * 沿革：
+ *   v0.1.x    黑白 Monochrome
+ *   v0.2~0.5  暖纸 + 印章红
+ *   v0.6.x    纯白 + 荧光绿（accent 一色包打天下，装饰过载 → 观感 demo）
+ *   v0.7.0    纯白 + 墨黑结构 + 绿色语义（现行）
  */
 
 @theme {
-  /* ===== Color =====
-     纯白底 + 荧光绿 accent（与 zmzai.cloud 主应用同源，Hallmark Study 锁定）。
-     accent 为荧光绿（oklch 0.78 0.220 142）；accent-ink 为深色（用于绿底上的字）。 */
-  --color-bg:            oklch(0.995 0.002 90);
-  --color-surface:       oklch(0.98 0.004 90);
-  --color-surface-2:     oklch(0.95 0.006 88);
-  --color-ink:           oklch(0.15 0.010 30);
-  --color-ink-2:         oklch(0.50 0.012 55);
-  --color-ink-3:         oklch(0.55 0.012 55);
-  --color-line:          oklch(0.90 0.005 88);
-  --color-line-strong:   oklch(0.15 0.010 30);
-  --color-accent:        oklch(0.78 0.220 142);
-  --color-accent-ink:    oklch(0.15 0.010 30);
-  --color-success:       oklch(0.72 0.180 145);
-  --color-danger:        oklch(0.55 0.200 25);
-  --color-warning:       oklch(0.80 0.150 90);
+  /* ══════════════════════════════════════════════════════
+     1. Neutral — 中性灰阶
+     统一色相 hue 265（冷中性），彩度随明度轻微起伏但全部 ≤ 0.017。
+     v0.6 的 ink(30°) / ink-2(55°) / line(88°) / surface(90°) 四个色相
+     混用，是"说不出哪里怪"的根源。
+     ══════════════════════════════════════════════════════ */
+  --color-bg:          oklch(1 0 0);            /* 页面底，纯白 */
+  --color-surface:     oklch(0.985 0.001 265);  /* 卡片 / 面板 */
+  --color-surface-2:   oklch(0.968 0.002 265);  /* 嵌套 / 表头 */
+  --color-surface-3:   oklch(0.94 0.003 265);   /* hover / 按下 */
+  --color-ink:         oklch(0.21 0.008 265);   /* 标题 / 正文 */
+  --color-ink-2:       oklch(0.442 0.017 265);  /* 次级文字 */
+  --color-ink-3:       oklch(0.617 0.014 265);  /* 辅助 / 占位 · 3.69:1 */
+  --color-line:        oklch(0.92 0.004 265);   /* 常规边框 */
+  --color-line-strong: oklch(0.87 0.005 265);   /* 强调边框 */
+  --color-rule:        oklch(0.21 0.008 265);   /* 硬分隔线 = ink */
 
-  /* Dark surface — 仅用于代码块/preview，不是全局 dark mode */
-  --color-dark-bg:       #0A0A0A;
-  --color-dark-surface:  #141414;
-  --color-dark-ink:      #FAFAFA;
-  --color-dark-line:     #27272A;
+  /* ══════════════════════════════════════════════════════
+     2. Structure accent — 墨黑
+     只干结构的活：主按钮、焦点环、选中态、硬线、链接 hover。
+     高饱和彩色的活它不干——那正是 v0.6 显得 demo 的原因。
+     ══════════════════════════════════════════════════════ */
+  --color-accent:           oklch(0.21 0.008 265);
+  --color-accent-ink:       oklch(1 0 0);
+  --color-accent-strong:    oklch(0.09 0.004 265);
+  --color-accent-tint:      oklch(0.968 0.002 265);
+  --color-accent-readable:  var(--color-accent);
 
-  /* ===== Fonts =====
-     无衬线主字体（MiSans，中文现代感）+ Noto Serif SC 标题衬线 + JetBrains Mono 等宽。
-     v0.2.0~0.2.8 曾以 Noto Serif SC 为 sans，但 next/font 只加载 latin 子集、
-     中文 fallback 系统宋体观感陈旧——0.2.9 改回 MiSans。 */
-  --font-sans: "MiSans", "Noto Serif SC", "Source Han Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* ══════════════════════════════════════════════════════
+     3. Brand green — 品牌资产专用
+     只给 favicon / logo / 印章 / 极少数品牌位。
+     不承担交互语义，不进按钮、不进边框。
+     ══════════════════════════════════════════════════════ */
+  --color-brand:      oklch(0.499 0.14 145);          /* 5.67:1 */
+  --color-brand-tint: oklch(0.955 0.035 145);
+
+  /* ══════════════════════════════════════════════════════
+     4. Semantic — 语义色
+     只表达状态，不做装饰。每色配一档浅底 tint 用于 badge / 提示条。
+     全部经 WCAG 校验：文字用途 ≥ 4.5:1（白底）。
+     对照：v0.6 的荧光绿在白底只有 1.8:1，21 处 text-accent 全部不达标。
+     ══════════════════════════════════════════════════════ */
+  --color-live:          oklch(0.499 0.17 145);      /* 运行中 / 活跃 · 5.55:1 */
+  --color-success:       oklch(0.499 0.13 145);      /* 成功 · 5.70:1 */
+  --color-success-tint:  oklch(0.955 0.035 145);
+  --color-warning:       oklch(0.499 0.12 75);       /* 告警 · 6.14:1 */
+  --color-warning-tint:  oklch(0.955 0.045 90);
+  --color-danger:        oklch(0.499 0.18 25);       /* 错误 · 6.62:1 */
+  --color-danger-tint:   oklch(0.955 0.03 25);
+
+  /* ══════════════════════════════════════════════════════
+     5. Dark surface — 仅代码块 / preview，不是全局 dark mode
+     ══════════════════════════════════════════════════════ */
+  --color-dark-bg:      oklch(0.17 0.006 265);
+  --color-dark-surface: oklch(0.23 0.007 265);
+  --color-dark-ink:     oklch(0.97 0.002 265);
+  --color-dark-line:    oklch(0.32 0.008 265);
+
+  /* ══════════════════════════════════════════════════════
+     6. Elevation — 阴影
+     v0.6 完全没有 shadow token，各站只能手写 oklch(... / 0.12) 硬编码。
+     统一用 ink 色做阴影基色，避免出现彩虹灰。
+     ══════════════════════════════════════════════════════ */
+  --shadow-xs: 0 1px 2px oklch(0.21 0.008 265 / 0.05);
+  --shadow-sm: 0 1px 3px oklch(0.21 0.008 265 / 0.06),
+               0 1px 2px oklch(0.21 0.008 265 / 0.04);
+  --shadow-md: 0 4px 12px -2px oklch(0.21 0.008 265 / 0.08),
+               0 2px 4px -2px oklch(0.21 0.008 265 / 0.05);
+  --shadow-lg: 0 12px 32px -8px oklch(0.21 0.008 265 / 0.12),
+               0 4px 8px -4px oklch(0.21 0.008 265 / 0.06);
+  --shadow-xl: 0 24px 56px -12px oklch(0.21 0.008 265 / 0.16);
+
+  /* ══════════════════════════════════════════════════════
+     7. Fonts
+     MiSans 主字体；fallback 全部为无衬线。
+     v0.6 把 Noto Serif SC 排在 sans 第二顺位——MiSans CDN 一挂整站
+     掉宋体。此处移除。
+     ══════════════════════════════════════════════════════ */
+  --font-sans: "MiSans", -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Menlo", monospace;
 
-  /* ===== Radius =====
-     锐利编辑风（sharp editorial）。 */
-  --radius-sm:    2px;
-  --radius:       2px;
-  --radius-lg:    4px;
-  --radius-xl:    6px;
+  /* ══════════════════════════════════════════════════════
+     8. Radius — 锐利但不寒酸
+     v0.6 的 2/2/4/6 太扁，大容器用 2px 像表格不成卡片。
+     ══════════════════════════════════════════════════════ */
+  --radius-xs:    2px;
+  --radius-sm:    3px;
+  --radius:       4px;
+  --radius-md:    4px;
+  --radius-lg:    6px;
+  --radius-xl:    8px;
+  --radius-2xl:   12px;
   --radius-pill:  9999px;
 
-  /* ===== Motion ===== */
+  /* ══════════════════════════════════════════════════════
+     9. Motion
+     ══════════════════════════════════════════════════════ */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* ===== Backward-compat aliases =====
-     Maps old v1 token names → new v2 values.
-     Lets zmzai-agent's 267 existing CSS classes work without modification. */
-  --color-paper:         var(--color-bg);
-  --color-muted:         var(--color-ink-2);
-  --color-rule:          var(--color-ink);
+  /* ══════════════════════════════════════════════════════
+     10. Backward-compat aliases
+     v1 token 名 → v0.7 值，让既有 267 个 class 无需改动。
+     ══════════════════════════════════════════════════════ */
+  --color-paper:          var(--color-bg);
+  --color-muted:          var(--color-ink-2);
   --color-surface-strong: var(--color-surface-2);
-  --color-accent-strong: oklch(0.68 0.220 142);
-  --animate-dur-fast:    150ms;
-  --animate-dur-base:    250ms;
-  --animate-dur-slow:    500ms;
-  --radius-card:         var(--radius);
-  --radius-input:        var(--radius-sm);
+  --animate-dur-fast:     150ms;
+  --animate-dur-base:     250ms;
+  --animate-dur-slow:     500ms;
+  --radius-card:          var(--radius);
+  --radius-input:         var(--radius-sm);
 }
 
 :root {

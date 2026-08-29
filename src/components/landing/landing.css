@@ -40,8 +40,8 @@
 }
 
 .btn-solid:hover {
-  background: oklch(0.30 0.010 30);
-  border-color: oklch(0.30 0.010 30);
+  background: var(--color-ink);
+  border-color: var(--color-ink);
 }
 
 /* Arrow slide on hover（按钮/链接内的 → 箭头位移） */
@@ -125,7 +125,7 @@
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px -12px oklch(0.18 0.011 40 / 0.12);
+  box-shadow: var(--shadow-lg);
   border-color: var(--color-muted);
 }
 
@@ -195,7 +195,7 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 24px 64px -16px oklch(0.15 0.010 30 / 0.12);
+  box-shadow: var(--shadow-xl);
   position: relative;
 }
 
