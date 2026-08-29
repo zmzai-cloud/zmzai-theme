@@ -8,7 +8,7 @@ export interface MovingBorderProps {
   className?: string;
   /** Border rotation duration in seconds (default 5) */
   duration?: number;
-  /** Border color (default accent blue) */
+  /** Border color (default accent = ink) */
   borderColor?: string;
   /** Inner background color (default bg) */
   backgroundColor?: string;
