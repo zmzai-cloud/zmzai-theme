@@ -8,8 +8,8 @@
 .markdown-body ul, .markdown-body ol { margin: 0.6rem 0; padding-left: 1.35rem; }
 .markdown-body li { margin: 0.25rem 0; }
 .markdown-body blockquote { margin: 0.7rem 0; padding-left: 0.9rem; border-left: 3px solid var(--color-ink); color: var(--color-muted); }
-.markdown-body a { color: var(--color-accent-strong); text-decoration: underline; text-underline-offset: 2px; }
-.markdown-body a:hover { color: var(--color-accent); }
+.markdown-body a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--color-ink-3); }
+.markdown-body a:hover { text-decoration-color: var(--color-ink); }
 .markdown-body code { font-family: var(--font-mono); font-size: 0.82em; padding: 0.12em 0.35em; background: var(--color-surface-strong); border: 1px solid var(--color-line); }
 .markdown-body table { border-collapse: collapse; margin: 0.8rem 0; width: 100%; font-size: 0.85rem; }
 .markdown-body th, .markdown-body td { border: 1px solid var(--color-line); padding: 0.4rem 0.6rem; text-align: left; }
@@ -19,19 +19,20 @@
 
 .md-codeblock { margin: 0.8rem 0; border: 1px solid var(--color-line); border-radius: var(--radius); overflow: hidden; }
 .md-codeblock-head { display: flex; align-items: center; justify-content: space-between; padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--color-line); background: var(--color-surface-strong); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-muted); }
-.md-copy { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--color-accent-strong); font: inherit; padding: 0; cursor: pointer; }
-.md-copy:hover { color: var(--color-accent); }
+.md-copy { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--color-ink-2); font: inherit; padding: 0; cursor: pointer; }
+.md-copy:hover { color: var(--color-ink); }
 .md-codeblock pre { max-height: 24rem; margin: 0; overflow: auto; padding: 0.75rem; background: var(--color-ink); color: var(--color-paper); font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.65; }
 .md-codeblock code { font-family: inherit; }
 
-/* hljs 暖墨主题（深底暖字） */
-.md-codeblock .hljs-comment, .md-codeblock .hljs-quote { color: #9a9184; font-style: italic; }
-.md-codeblock .hljs-keyword, .md-codeblock .hljs-selector-tag, .md-codeblock .hljs-literal { color: #e08a7a; }
-.md-codeblock .hljs-string, .md-codeblock .hljs-attr, .md-codeblock .hljs-template-tag { color: #c9b896; }
-.md-codeblock .hljs-number, .md-codeblock .hljs-built_in, .md-codeblock .hljs-symbol { color: #d9a05b; }
-.md-codeblock .hljs-title, .md-codeblock .hljs-section, .md-codeblock .hljs-function .hljs-title { color: #f2e9d8; }
-.md-codeblock .hljs-type, .md-codeblock .hljs-class .hljs-title { color: #e8c4a8; }
-.md-codeblock .hljs-variable, .md-codeblock .hljs-template-variable { color: #f2e9d8; }
-.md-codeblock .hljs-params { color: #f2e9d8; }
-.md-codeblock .hljs-meta, .md-codeblock .hljs-tag { color: #9a9184; }
-.md-codeblock .hljs-name { color: #e08a7a; }
+/* hljs 墨骨主题（深底：绿系 + 琥珀 + 中性，与品牌语义色同族）。
+   曾用暖纸时代的暖墨色（#9a9184/#e08a7a…），v0.8.1 换为墨骨配色。 */
+.md-codeblock .hljs-comment, .md-codeblock .hljs-quote { color: #8B8E96; font-style: italic; }
+.md-codeblock .hljs-keyword, .md-codeblock .hljs-selector-tag, .md-codeblock .hljs-literal { color: #5CCE7A; }
+.md-codeblock .hljs-string, .md-codeblock .hljs-attr, .md-codeblock .hljs-template-tag { color: #9FD68C; }
+.md-codeblock .hljs-number, .md-codeblock .hljs-built_in, .md-codeblock .hljs-symbol { color: #E2B868; }
+.md-codeblock .hljs-title, .md-codeblock .hljs-section, .md-codeblock .hljs-function .hljs-title { color: #E9EAEC; }
+.md-codeblock .hljs-type, .md-codeblock .hljs-class .hljs-title { color: #86CE96; }
+.md-codeblock .hljs-variable, .md-codeblock .hljs-template-variable { color: #E9EAEC; }
+.md-codeblock .hljs-params { color: #E9EAEC; }
+.md-codeblock .hljs-meta, .md-codeblock .hljs-tag { color: #8B8E96; }
+.md-codeblock .hljs-name { color: #5CCE7A; }
