@@ -33,7 +33,7 @@ export function Notch({ children, visible = false, className, ...props }: NotchP
             exit={{ y: -60, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "pointer-events-auto flex items-center gap-2 rounded-full border border-line bg-ink px-4 py-2 text-sm text-white shadow-lg",
+              "pointer-events-auto flex items-center gap-2 rounded-full border border-line bg-ink px-4 py-2 text-sm text-accent-ink shadow-lg",
               className
             )}
             {...props}

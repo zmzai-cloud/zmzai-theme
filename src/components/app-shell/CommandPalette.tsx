@@ -79,7 +79,7 @@ export function CommandPalette({ open, onClose, items, placeholder = "搜索页�
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/30 px-4 pt-[12vh]" onClick={onClose} role="presentation">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 px-4 pt-[12vh]" onClick={onClose} role="presentation">
       <div
         className="w-full max-w-xl overflow-hidden rounded-xl border border-line bg-bg shadow-lg"
         onClick={(event) => event.stopPropagation()}

@@ -14,7 +14,7 @@ export const cardVariants = cva(
       variant: {
         default: "border-line",
         interactive:
-          "border-line hover:border-ink hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer",
+          "border-line hover:border-ink hover:-translate-y-0.5 hover:shadow-lg cursor-pointer",
         surface: "bg-surface border-line",
       },
       padding: {

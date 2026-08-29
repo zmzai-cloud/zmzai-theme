@@ -73,7 +73,7 @@ function TimelineItemRow({ item, isLast }: { item: TimelineItem; isLast: boolean
       <div className="relative z-10 flex-shrink-0 pt-0.5">
         {status === "done" && (
           <div className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-ink">
-            <svg className="h-2 w-2 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg className="h-2 w-2 text-bg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="10 3 5 8 2 5" />
             </svg>
           </div>

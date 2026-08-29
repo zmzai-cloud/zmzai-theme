@@ -36,7 +36,7 @@ export function Tooltip({ children, content, side = "top", className }: TooltipP
           side={side}
           sideOffset={6}
           className={cn(
-            "z-50 rounded-lg bg-ink px-2.5 py-1.5 text-xs font-medium text-white shadow-md",
+            "z-50 rounded-lg bg-ink px-2.5 py-1.5 text-xs font-medium text-accent-ink shadow-md",
             "data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95",
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
             className

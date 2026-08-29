@@ -78,7 +78,7 @@ export function LayoutGrid({ items, className }: LayoutGridProps) {
             <motion.div
               layoutId={`layout-card-${activeItem.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-line bg-bg p-6 shadow-2xl"
+              className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-line bg-bg p-6 shadow-xl"
             >
               {/* Close button */}
               <button

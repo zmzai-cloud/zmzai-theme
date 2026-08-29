@@ -16,8 +16,8 @@ export interface StickyBannerProps extends HTMLAttributes<HTMLDivElement> {
 
 const variantStyles: Record<BannerVariant, string> = {
   info: "bg-surface text-ink border-line",
-  warning: "bg-ink text-bg border-ink",
-  danger: "bg-bg text-ink border-ink border-2",
+  warning: "border-warning bg-warning-tint text-warning",
+  danger: "border-danger bg-danger-tint text-danger",
 };
 
 /**

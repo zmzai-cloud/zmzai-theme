@@ -49,7 +49,7 @@ export function MultiStepLoader({
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className="flex h-5 w-5 items-center justify-center rounded-full bg-ink"
                 >
-                  <svg className="h-3 w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <svg className="h-3 w-3 text-bg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </motion.div>

@@ -16,7 +16,8 @@
  *   v0.1.x    黑白 Monochrome
  *   v0.2~0.5  暖纸 + 印章红
  *   v0.6.x    纯白 + 荧光绿（accent 一色包打天下，装饰过载 → 观感 demo）
- *   v0.7.0    纯白 + 墨黑结构 + 绿色语义（现行）
+ *   v0.8.x    纯白 + 墨黑结构 + 绿色语义
+ *   v0.8.3    品牌色全墨 Monochrome（现行）
  */
 
 @theme {
@@ -46,7 +47,7 @@
   --color-accent-ink:       oklch(1 0 0);
   --color-accent-strong:    oklch(0.09 0.004 265);
   --color-accent-tint:      oklch(0.968 0.002 265);
-  --color-accent-readable:  var(--color-accent);
+  --color-accent-readable:  var(--color-accent);        /* deprecated（v0.6 荧光绿遗迹），新代码直接用 accent */
 
   /* ══════════════════════════════════════════════════════
      3. Brand — 品牌资产专用（v0.8.3 起为全墨 Monochrome）
@@ -65,6 +66,7 @@
      对照：v0.6 的荧光绿在白底只有 1.8:1，21 处 text-accent 全部不达标。
      ══════════════════════════════════════════════════════ */
   --color-live:          oklch(0.499 0.17 145);      /* 运行中 / 活跃 · 5.55:1 */
+  --color-live-tint:     oklch(0.955 0.045 145);     /* live 浅底（badge/提示条，与 success-tint 同构） */
   --color-success:       oklch(0.499 0.13 145);      /* 成功 · 5.70:1 */
   --color-success-tint:  oklch(0.955 0.035 145);
   --color-warning:       oklch(0.499 0.12 75);       /* 告警 · 6.14:1 */
@@ -121,14 +123,15 @@
   /* ══════════════════════════════════════════════════════
      9. Motion
      ══════════════════════════════════════════════════════ */
-  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);  /* landing/各站用；v0.8.4 起由包提供 */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ══════════════════════════════════════════════════════
      10. Backward-compat aliases
      v1 token 名 → v0.7 值，让既有 267 个 class 无需改动。
      ══════════════════════════════════════════════════════ */
-  --color-paper:          var(--color-bg);
+  --color-paper:          var(--color-bg);            /* deprecated（v1 遗迹），新代码用 --color-bg */
   --color-muted:          var(--color-ink-2);
   --color-surface-strong: var(--color-surface-2);
   --animate-dur-fast:     150ms;

@@ -11,6 +11,7 @@ export const badgeVariants = cva(
       variant: {
         solid: "bg-ink text-bg",
         outline: "border border-line text-ink-2",
+        live: "border border-live/30 bg-live/10 text-live",
         success: "border border-success/30 bg-success/10 text-success",
         warning: "border border-warning/30 bg-warning/10 text-warning",
         danger: "border border-danger/30 bg-danger/10 text-danger",
@@ -26,7 +27,7 @@ export const badgeVariants = cva(
 );
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: "solid" | "outline" | "success" | "warning" | "danger" | "accent";
+  variant?: "solid" | "outline" | "live" | "success" | "warning" | "danger" | "accent";
   size?: "sm" | "md";
 }
 

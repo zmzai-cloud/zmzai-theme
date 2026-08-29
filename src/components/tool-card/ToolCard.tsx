@@ -33,7 +33,7 @@ export function ToolCard({ call, sessionIdle = false }: { call: ToolCall; sessio
         <span className="tool-card-glyph" aria-hidden><Icon name={state.status === "completed" ? "check" : interrupted || state.status === "error" ? "cross" : "chevron-down"} size={12} /></span>
         <span className="tool-card-label">{title}</span>
         {(state.status === "error" || interrupted) && <Badge variant="danger" size="sm">失败</Badge>}
-        {running && !interrupted && <Badge variant="warning" size="sm">运行中</Badge>}
+        {running && !interrupted && <Badge variant="live" size="sm">运行中</Badge>}
         {toolDuration(call) && <span className="tool-card-duration">{toolDuration(call)}</span>}
         <Icon name="chevron-down" size={12} className={isOpen ? "tool-card-chevron open" : "tool-card-chevron"} />
       </button>

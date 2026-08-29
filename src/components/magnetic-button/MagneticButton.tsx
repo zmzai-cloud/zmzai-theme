@@ -25,7 +25,7 @@ export interface MagneticButtonProps
  * layout shift.
  *
  * @example
- * <MagneticButton className="rounded-full bg-ink px-6 py-3 text-white">
+ * <MagneticButton className="rounded-full bg-ink px-6 py-3 text-accent-ink">
  *   立即开始
  * </MagneticButton>
  */
@@ -68,7 +68,7 @@ export function MagneticButton({
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
       className={cn(
-        "relative inline-flex cursor-pointer items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50",
+        "relative inline-flex cursor-pointer items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-accent-ink transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}

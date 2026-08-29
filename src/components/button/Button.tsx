@@ -17,7 +17,7 @@ export interface ButtonProps
  * Button — primary interactive element.
  *
  * - Uses framer-motion for hover/active micro-interactions
- * - Pill radius on all variants
+ * - Sharp radius (rounded-sm, 3px) on all variants
  * - `loading` prop shows a spinner and disables
  *
  * @example

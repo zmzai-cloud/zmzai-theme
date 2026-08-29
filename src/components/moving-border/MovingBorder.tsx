@@ -21,7 +21,7 @@ export interface MovingBorderProps {
  *
  * Uses CSS `@property --angle` for a smooth rotating light beam around
  * the border. Based on Aceternity's Moving Border, adapted to zmzai's
- * blue accent. Only the border moves — inner content stays static.
+ * brand accent (ink since v0.8.3). Only the border moves — inner content stays static.
  *
  * @example
  * <MovingBorder duration={5}>

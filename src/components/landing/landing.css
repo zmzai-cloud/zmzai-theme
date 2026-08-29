@@ -301,7 +301,7 @@
 }
 
 .why-card.dark .why-card-icon {
-  border-color: oklch(1 0 0 / 0.2);
+  border-color: color-mix(in oklab, var(--color-bg) 20%, transparent);
 }
 
 /* ── Integration chips ── */
@@ -425,6 +425,5 @@
 .nav-shell.floating .site-nav {
   border-radius: var(--radius-pill);
   border-color: transparent;
-  box-shadow: 0 8px 32px -8px oklch(0.15 0.010 30 / 0.18),
-              0 1px 3px oklch(0.15 0.010 30 / 0.06);
+  box-shadow: var(--shadow-lg);
 }

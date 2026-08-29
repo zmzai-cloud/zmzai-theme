@@ -143,7 +143,7 @@ export function AppShell({
       {/* 移动端抽屉 */}
       {drawerOpen ? (
         <div className="fixed inset-0 z-40 lg:hidden" role="presentation">
-          <div className="absolute inset-0 bg-black/30" onClick={() => setDrawerOpen(false)} />
+          <div className="absolute inset-0 bg-ink/40" onClick={() => setDrawerOpen(false)} />
           <nav className="absolute inset-y-0 left-0 flex w-64 flex-col gap-5 overflow-y-auto border-r border-line bg-bg px-3 py-4">
             {brandBlock}
             <SidebarSections sections={sections} pathname={pathname} link={Link} onNavigate={() => setDrawerOpen(false)} />
