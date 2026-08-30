@@ -64,7 +64,8 @@
     "build": "tsc -p tsconfig.json --noEmit",
     "typecheck": "tsc --noEmit",
     "playground": "vite playground --port 5174",
-    "prepublishOnly": "pnpm typecheck"
+    "prepublishOnly": "pnpm typecheck && pnpm run guard:colors",
+    "guard:colors": "node scripts/check-color-literals.mjs"
   },
   "peerDependencies": {
     "react": "^19.0.0",
