@@ -2,8 +2,7 @@
 
 import { type ReactNode, useEffect, useState } from "react";
 import { cn } from "../../utils/cn";
-import { Logo } from "../../brand/logo";
-import { Wordmark } from "../../brand/wordmark";
+import { BrandLockup } from "../../brand/brand-lockup";
 import { Icon } from "../icon/Icon";
 
 /**
@@ -66,12 +65,8 @@ export function Navbar({ sublabel, brand, children, actions, badge, brandHref, m
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const brandNode = brand ?? (
-    <span className="inline-flex items-center gap-2">
-      <Logo size={22} />
-      <Wordmark size={16} sublabel={sublabel} />
-    </span>
-  );
+  // 品牌区统一走 BrandLockup（2026-08-31 抽出，与 AppShell 共用一份锁标）
+  const brandNode = brand ?? <BrandLockup sublabel={sublabel} />;
   const nav = children ? (
     <nav
       className="flex min-w-0 items-center gap-1 overflow-x-auto"

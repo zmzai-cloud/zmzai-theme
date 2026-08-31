@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ComponentType, ReactNode } from "react";
 
+import { BrandLockup } from "../../brand/brand-lockup";
+
 import { Badge } from "../badge/Badge";
 import { Icon, type IconName } from "../icon/Icon";
 import { CommandPalette, type AppPaletteItem } from "./CommandPalette";
@@ -130,9 +132,11 @@ export function AppShell({
   }, [hasPalette]);
 
   const brandBlock = (
-    <Link href={brand.href ?? "/"} className="flex items-baseline gap-1.5 px-2">
-      <span className="text-sm font-semibold tracking-tight">{brand.label}</span>
-      {brand.suffix ? <span className="font-mono text-[11px] text-ink-3">{brand.suffix}</span> : null}
+    <Link href={brand.href ?? "/"} className="flex flex-col gap-1 px-2">
+      {/* 品牌区统一走 BrandLockup（2026-08-31 抽出，与 Navbar 共用一份锁标）。
+          label 同时是顶栏兜底标题与子站标，两处语义一致。 */}
+      <BrandLockup sublabel={brand.label} />
+      {brand.suffix ? <span className="font-mono text-[10px] text-ink-3">{brand.suffix}</span> : null}
     </Link>
   );
 

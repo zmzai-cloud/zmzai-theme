@@ -15,6 +15,13 @@
  *   · 描述统一 text-sm text-ink-2 —— ink-3 只有 3.69:1，副文案不用它
  *
  * v0.9.5 追加 centered（居中 Hero，/quill 首页用）。
+ *
+ * v0.9.7 page 变体改版（用户定案 2026-08-31，与 BRAND 戒律 14 同步）：
+ *   · 眉标改 mono 小写间距体（原 sans semibold）—— 等宽小标是全站通用的小节语言
+ *   · 标题从 text-2xl 提到 text-3xl，font-semibold → font-bold —— 衬线的视觉
+ *     体量比无衬线小，不放大反而显得比原来弱
+ *   · 图标从 text-ink 降到 text-ink-2 —— 图标是辅助信息，不该跟标题同权重
+ *   · 描述加 max-w-2xl + leading-7 —— 衬线大标题下的 sans 正文要更松才不挤
  */
 
 import type { ReactNode } from "react";
@@ -93,19 +100,19 @@ export function PageHeader({
     <header className={`flex flex-wrap items-end justify-between gap-3 ${className}`}>
       <div className="min-w-0">
         {eyebrow ? (
-          <small className="mb-1 block text-xs font-semibold uppercase tracking-wide text-ink-3">
+          <small className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.16em] text-ink-3">
             {eyebrow}
           </small>
         ) : null}
-        <div className="flex min-w-0 items-center gap-2">
-          {icon ? <Icon name={icon} size={20} className="shrink-0 text-ink" /> : null}
-          <h1
-            className={`font-serif text-2xl font-semibold tracking-tight text-ink ${titleClassName}`}
-          >
+        <div className="flex min-w-0 items-center gap-2.5">
+          {icon ? <Icon name={icon} size={20} strokeWidth={1.5} className="shrink-0 text-ink-2" /> : null}
+          <h1 className={`font-serif text-3xl font-bold leading-[1.2] tracking-tight text-ink ${titleClassName}`}>
             {title}
           </h1>
         </div>
-        {description ? <p className="mt-2 text-sm leading-6 text-ink-2">{description}</p> : null}
+        {description ? (
+          <p className="mt-2.5 max-w-2xl text-sm leading-7 text-ink-2">{description}</p>
+        ) : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
     </header>
