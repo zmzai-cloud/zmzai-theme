@@ -1,7 +1,8 @@
-// @zmzai/theme — Components barrel (54 components)
+// @zmzai/theme — Components barrel (55 components)
 
 // === Basic ===
 export * from "./app-shell";
+export * from "./page-header";
 export * from "./button";
 export * from "./input";
 export * from "./textarea";

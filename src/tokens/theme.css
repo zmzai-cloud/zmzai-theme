@@ -22,6 +22,9 @@
  *   v0.9.1    印色路标撤回，命名定全词（现行）
  *   v0.9.2    品红点睛色阶（墨底荧光）——spot 四层 + ink，仅深色载体
  *   v0.9.3    底色纯白化——暖纸退役，卡片层次交给 surface 灰阶与边框
+ *   v0.9.4    PageHeader 统一组件——内页 text-2xl 内联图标、落地页 44px 墨底徽章
+ *   v0.9.5    PageHeader 支持 centered（居中 Hero）；Icon 支持 strokeWidth
+ *   v0.9.6    标题行补 min-w-0，truncate 在详情页长标题下才生效
  */
 
 @theme {

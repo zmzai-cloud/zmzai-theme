@@ -70,7 +70,18 @@ const paths: Record<string, { d: string; fill?: boolean }> = {
 
 export type IconName = keyof typeof paths;
 
-export function Icon({ name, size = 14, className = "" }: { name: IconName; size?: number; className?: string }) {
+export function Icon({
+  name,
+  size = 14,
+  className = "",
+  strokeWidth = 1.5,
+}: {
+  name: IconName;
+  size?: number;
+  className?: string;
+  /** 描边宽度。viewBox 恒为 16，放大到 20px+ 时用 1.25 避免视觉过重（默认 1.5 不变） */
+  strokeWidth?: number;
+}) {
   const icon = paths[name];
   if (!icon) return null;
   return (
@@ -82,7 +93,7 @@ export function Icon({ name, size = 14, className = "" }: { name: IconName; size
       aria-hidden="true"
       fill={icon.fill ? "currentColor" : "none"}
       stroke={icon.fill ? "none" : "currentColor"}
-      strokeWidth={1.5}
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
     >
