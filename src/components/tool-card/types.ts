@@ -54,6 +54,8 @@ export function formatToolSummary(tool: string, input: unknown): string | null {
   const pattern = str("pattern") ?? str("query") ?? str("q");
   const url = str("url");
   const desc = str("description") ?? str("prompt") ?? str("task");
+  // grep 的范围字段是 pathPattern（framework builtins），与通用 path 分开取
+  const scope = str("pathPattern") ?? str("scope");
   const cap = (s: string): string => (s.length > 80 ? `${s.slice(0, 80)}…` : s);
   const verb = tool.charAt(0).toUpperCase() + tool.slice(1);
   switch (tool) {
@@ -62,7 +64,7 @@ export function formatToolSummary(tool: string, input: unknown): string | null {
     case "glob":
       return pattern ? `Glob ${cap(pattern)}${path ? ` in ${cap(path)}` : ""}` : path ? `Glob ${cap(path)}` : null;
     case "grep":
-      return pattern ? `Grep ${cap(pattern)}${path ? ` in ${cap(path)}` : ""}` : path ? `Grep ${cap(path)}` : null;
+      return pattern ? `Grep ${cap(pattern)}${scope ? ` in ${cap(scope)}` : path ? ` in ${cap(path)}` : ""}` : path ? `Grep ${cap(path)}` : null;
     case "edit":
     case "write":
       return path ? `${tool === "edit" ? "Edit" : "Write"} ${cap(path)}` : null;
