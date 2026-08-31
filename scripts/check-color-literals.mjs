@@ -82,4 +82,41 @@ if (violations.length) {
   process.exit(1);
 }
 
-console.log("✓ 品牌色守卫通过：components/ 白名单外零硬编码颜色。");
+/**
+ * G2 · spot 同框禁令（v0.9.2）
+ *
+ * --color-spot*（品红点睛色阶）与 --color-danger（错误红）不得出现在同一
+ * 视口区块——品红距语义红仅 35°（OKLab ΔE 0.229，安全线 0.20 之上），
+ * 快速扫视时仍有被误读为错误状态的风险。
+ *
+ * 静态检查只能做到文件级保守代理：同一文件同时引用两者即报错。
+ * 这会比视口级更严格，但 spot 本就只该出现在深色叙事区（hero / CTA /
+ * 终端），danger 属于表单与状态区——两者同文件本身就该怀疑。
+ *
+ * 注：G1（暖纸载体禁用）与 G3（spot 实底禁白字）依赖运行时样式解析，
+ * 静态检查无法覆盖，靠 theme.css 4.5 节的注释纪律 + code review 把关。
+ */
+const spotViolations = [];
+for (const file of walk(ROOT)) {
+  const rel = relative(ROOT, file);
+  if (ALLOWLIST.has(rel)) continue;
+  const src = readFileSync(file, "utf8");
+  const usesSpot = /var\(--color-spot/.test(src);
+  const usesDanger = /var\(--color-danger/.test(src);
+  if (usesSpot && usesDanger) {
+    spotViolations.push(rel);
+  }
+}
+
+if (spotViolations.length) {
+  console.error(
+    `\n✗ 品牌色守卫（G2 同框禁令）：以下文件同时引用 --color-spot* 与 --color-danger。` +
+      `\n  品红点睛色与错误红不得同框（BRAND.md 戒律 · v0.9.2 spot 纪律）。` +
+      `\n  spot 只出现在深色叙事区，danger 属于表单/状态区——拆开：\n\n` +
+      spotViolations.map((v) => `  ${v}`).join("\n") +
+      "\n"
+  );
+  process.exit(1);
+}
+
+console.log("✓ 品牌色守卫通过：components/ 白名单外零硬编码颜色，spot×danger 无同框。");
