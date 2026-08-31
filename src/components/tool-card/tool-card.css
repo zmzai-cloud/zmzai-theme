@@ -12,6 +12,8 @@
 .tool-card.completed .tool-card-glyph { color: var(--color-success); }
 .tool-card.failed .tool-card-glyph { color: var(--color-danger); }
 .tool-card-label { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.75rem; }
+/* 摘要行（formatToolSummary）：路径/命令用等宽，与 JSON 展开区视觉连续 */
+.tool-card-label-mono { font-family: var(--font-mono); font-size: 0.7rem; }
 .tool-card-duration { flex: 0 0 auto; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.6rem; }
 .tool-card-chevron { flex: 0 0 auto; color: var(--color-muted); transition: transform 0.15s var(--ease-out); }
 .tool-card-chevron.open { transform: rotate(180deg); }

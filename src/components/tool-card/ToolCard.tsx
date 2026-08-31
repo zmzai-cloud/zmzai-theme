@@ -4,13 +4,15 @@ import { useState } from "react";
 
 import { Badge } from "../../components/badge";
 import { Icon } from "../../components/icon/Icon";
-import { formatToolInput, toolDuration, type ToolCall } from "./types";
+import { formatToolInput, formatToolSummary, toolDuration, type ToolCall } from "./types";
 import "./tool-card.css";
 
 /**
  * ToolCard — 单次工具调用卡：状态色左边条 + 展开/收起的输入输出详情。
  *
- * 运行中卡常开；进入终态后收起，点标题可再看输出。
+ * 标题行显示人类可读摘要（v0.9.8 formatToolSummary：`Read src/foo.ts`、
+ * `Bash pnpm build`），引擎提供的 state.title 优先；JSON 结构化输入只出现在
+ * 展开区。运行中卡常开；进入终态后收起，点标题可再看输出。
  * `sessionIdle=true` 时非终态工具渲染为「失败（中断）」——
  * 会话空闲却停在 running 是崩溃/重启的遗留，不该永远转圈。
  *
@@ -22,7 +24,9 @@ export function ToolCard({ call, sessionIdle = false }: { call: ToolCall; sessio
   const state = call.state;
   const running = state.status === "running" || state.status === "pending";
   const interrupted = running && sessionIdle;
-  const title = state.status === "completed" ? state.title : state.status === "running" ? (state.title ?? call.tool) : call.tool;
+  const summary = formatToolSummary(call.tool, state.input);
+  const title = ("title" in state && state.title) || summary || call.tool;
+  const isSummary = !("title" in state && state.title) && !!summary; // 摘要是路径/命令 → 等宽更可读
   const output = state.status === "completed" ? state.output : state.status === "error" ? state.error : null;
   const statusClass = state.status === "completed" ? "completed" : interrupted ? "failed" : state.status === "error" ? "failed" : "running";
   const isOpen = running || expanded;
@@ -31,7 +35,7 @@ export function ToolCard({ call, sessionIdle = false }: { call: ToolCall; sessio
     <div className={`tool-card ${statusClass}`}>
       <button type="button" className="tool-card-trigger" aria-expanded={isOpen} onClick={() => setExpanded((value) => !value)}>
         <span className="tool-card-glyph" aria-hidden><Icon name={state.status === "completed" ? "check" : interrupted || state.status === "error" ? "cross" : "chevron-down"} size={12} /></span>
-        <span className="tool-card-label">{title}</span>
+        <span className={isSummary ? "tool-card-label tool-card-label-mono" : "tool-card-label"}>{title}</span>
         {(state.status === "error" || interrupted) && <Badge variant="danger" size="sm">失败</Badge>}
         {running && !interrupted && <Badge variant="live" size="sm">运行中</Badge>}
         {toolDuration(call) && <span className="tool-card-duration">{toolDuration(call)}</span>}
@@ -75,11 +79,9 @@ export function ToolGroup({ calls, sessionIdle = false }: { calls: ToolCall[]; s
   const glyph = failed.length > 0 ? "cross" : running.length > 0 ? "chevron-down" : "check";
   const single = calls.length === 1 ? calls[0] : undefined;
   const singleTitle = single
-    ? single.state.status === "completed"
-      ? (single.state.title ?? single.tool)
-      : single.state.status === "error"
-        ? single.state.error
-        : single.tool
+    ? ("title" in single.state && single.state.title) ||
+      formatToolSummary(single.tool, single.state.input) ||
+      (single.state.status === "error" ? single.state.error : single.tool)
     : null;
   const summary = [
     running.length > 0 && `${running.length} 个进行中`,

@@ -39,3 +39,51 @@ export function formatToolInput(input: unknown): string {
     return String(input);
   }
 }
+
+/** 工具输入摘要（v0.9.8）：从 input 的关键字段生成人类可读一行 ——
+ *  `Read src/foo.ts`、`Edit src/bar.ts`、`Bash pnpm build`、`Grep "pat" in src/`。
+ *  字段名与 agent-framework 工具 schema 对齐（path/command/pattern/description…），
+ *  未知工具尽力提取，提取不到返回 null（调用方回落工具名）。 */
+export function formatToolSummary(tool: string, input: unknown): string | null {
+  if (input === null || input === undefined) return null;
+  if (typeof input !== "object") return typeof input === "string" ? oneLine(input) : null;
+  const o = input as Record<string, unknown>;
+  const str = (k: string): string | undefined => (typeof o[k] === "string" && (o[k] as string).trim() ? (o[k] as string).trim() : undefined);
+  const path = str("path") ?? str("file_path") ?? str("filePath") ?? str("notebook_path");
+  const cmd = str("command") ?? str("cmd");
+  const pattern = str("pattern") ?? str("query") ?? str("q");
+  const url = str("url");
+  const desc = str("description") ?? str("prompt") ?? str("task");
+  const cap = (s: string): string => (s.length > 80 ? `${s.slice(0, 80)}…` : s);
+  const verb = tool.charAt(0).toUpperCase() + tool.slice(1);
+  switch (tool) {
+    case "read":
+      return path ? `Read ${cap(path)}` : null;
+    case "glob":
+      return pattern ? `Glob ${cap(pattern)}${path ? ` in ${cap(path)}` : ""}` : path ? `Glob ${cap(path)}` : null;
+    case "grep":
+      return pattern ? `Grep ${cap(pattern)}${path ? ` in ${cap(path)}` : ""}` : path ? `Grep ${cap(path)}` : null;
+    case "edit":
+    case "write":
+      return path ? `${tool === "edit" ? "Edit" : "Write"} ${cap(path)}` : null;
+    case "bash":
+    case "terminal":
+      return cmd ? `Bash ${cap(oneLine(cmd))}` : null;
+    case "webfetch":
+    case "web_fetch":
+      return url ? `Fetch ${cap(url)}` : null;
+    case "task":
+      return desc ? `Task ${cap(oneLine(desc))}` : null;
+    default: {
+      if (path) return `${cap(tool)} ${cap(path)}`;
+      if (cmd) return `${cap(tool)} ${cap(oneLine(cmd))}`;
+      if (url) return `${cap(tool)} ${cap(url)}`;
+      if (desc) return `${cap(tool)} ${cap(oneLine(desc))}`;
+      return null;
+    }
+  }
+}
+
+function oneLine(s: string): string {
+  return s.replace(/\s+/g, " ").trim();
+}
