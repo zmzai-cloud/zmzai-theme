@@ -88,7 +88,7 @@ export function CommandPalette({ open, onClose, items, placeholder = "搜索页�
         aria-label="命令面板"
       >
         <div className="flex items-center gap-2 border-b border-line px-4 py-3">
-          <Icon name="search" size={14} className="text-muted" />
+          <Icon name="search" size={14} className="text-ink-2" />
           <input
             ref={inputRef}
             value={query}
@@ -110,10 +110,10 @@ export function CommandPalette({ open, onClose, items, placeholder = "搜索页�
                 onClick={() => execute(index)}
                 onMouseEnter={() => setCursor(index)}
                 className={`flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm transition-colors ${
-                  index === cursor ? "bg-surface text-accent-readable" : "text-ink-2"
+                  index === cursor ? "bg-surface-3 text-ink" : "text-ink-2"
                 }`}
               >
-                {item.icon ? <Icon name={item.icon} size={13} className="shrink-0 text-muted" /> : null}
+                {item.icon ? <Icon name={item.icon} size={13} className="shrink-0 text-ink-2" /> : null}
                 <span className="min-w-0 flex-1 truncate">{item.label}</span>
                 {item.hint ? <span className="shrink-0 font-mono text-[11px] text-ink-3">{item.hint}</span> : null}
               </button>

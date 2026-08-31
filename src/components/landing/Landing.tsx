@@ -120,7 +120,7 @@ export function StepList({ steps, active, onSelect, className }: StepListProps) 
           <div>
             <div className="font-semibold">{s.title}</div>
             {s.desc && (
-              <div className={cn("text-xs mt-0.5", i === active ? "text-paper/70" : "text-muted")}>
+              <div className={cn("text-xs mt-0.5", i === active ? "text-bg/70" : "text-ink-2")}>
                 {s.desc}
               </div>
             )}
@@ -224,7 +224,7 @@ export interface CheckListProps {
 
 export function CheckList({ items, boxed = true, className }: CheckListProps) {
   return (
-    <div className={cn(boxed && "border border-line bg-paper p-8", className)}>
+    <div className={cn(boxed && "border border-line bg-bg p-8", className)}>
       {items.map((item, i) => (
         <div key={i} className="check-row">
           <span className="check-mark">✓</span>
@@ -314,7 +314,7 @@ export function StatusBadge({ status, label, className }: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase text-muted",
+        "inline-flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase text-ink-2",
         className,
       )}
     >

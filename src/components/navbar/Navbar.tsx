@@ -82,7 +82,7 @@ export function Navbar({ sublabel, brand, children, actions, badge, brandHref, m
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 flex h-14 items-center justify-between gap-4 border-b border-line bg-paper/80 px-5 backdrop-blur-md",
+        "sticky top-0 z-40 flex h-14 items-center justify-between gap-4 border-b border-line bg-bg/80 px-5 backdrop-blur-md",
         className
       )}
     >
@@ -119,7 +119,7 @@ export function Navbar({ sublabel, brand, children, actions, badge, brandHref, m
             {open ? (
               <div
                 onClick={() => setOpen(false)}
-                className="absolute right-0 top-full mt-2 flex w-60 flex-col gap-1 rounded-xl border border-line bg-paper p-2 shadow-lg"
+                className="absolute right-0 top-full mt-2 flex w-60 flex-col gap-1 rounded-xl border border-line bg-bg p-2 shadow-lg"
               >
                 {children ? (
                   <nav

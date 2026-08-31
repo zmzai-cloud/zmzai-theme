@@ -60,7 +60,7 @@ function SidebarSections({
                 onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
                 className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[13px] transition-colors ${
-                  active ? "bg-surface font-medium text-accent-readable" : "text-muted hover:bg-surface hover:text-accent"
+                  active ? "bg-surface-3 font-medium text-ink" : "text-ink-2 hover:bg-surface-2 hover:text-ink"
                 }`}
               >
                 <Icon name={item.icon} size={13} />
@@ -171,7 +171,7 @@ export function AppShell({
               type="button"
               aria-label="打开导航"
               onClick={() => setDrawerOpen(true)}
-              className="rounded-md p-1 text-muted hover:bg-surface hover:text-accent lg:hidden"
+              className="rounded-md p-1 text-ink-2 hover:bg-surface hover:text-accent lg:hidden"
             >
               <Icon name="menu" size={16} />
             </button>
@@ -182,7 +182,7 @@ export function AppShell({
                 <button
                   type="button"
                   onClick={() => setPaletteOpen(true)}
-                  className="flex items-center gap-2 rounded-md border border-line px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:border-accent hover:text-accent"
+                  className="flex items-center gap-2 rounded-md border border-line px-2.5 py-1 font-mono text-[11px] text-ink-2 transition-colors hover:border-accent hover:text-accent"
                   aria-label="打开命令面板"
                 >
                   <Icon name="search" size={12} />
