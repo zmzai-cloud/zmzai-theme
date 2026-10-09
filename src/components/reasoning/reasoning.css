@@ -1,10 +1,16 @@
-/* Reasoning — 思考过程折叠。token 依赖消费端 @theme。 */
-@keyframes zmz-reasoning-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.75); } }
+/* Reasoning — 思考过程折叠行（v0.9.12 ZCode 式弱化形态）。
+   与工具过程行同层级：裸文本灰色行（脑图标 + 思考 · 持续了 Ns），
+   无边框、无背景、无左边线；层级差由颜色深浅承担。token 依赖消费端 @theme。 */
+@keyframes zmz-reasoning-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-.zmz-reasoning { border-left: 2px solid var(--color-line); padding-left: 0.6rem; }
-.zmz-reasoning-toggle { display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: 0; cursor: pointer; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-muted); padding: 0.15rem 0; }
-.zmz-reasoning-dot { display: inline-block; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--color-muted); }
-.zmz-reasoning-dot.live { background: var(--color-live); animation: zmz-reasoning-pulse 1.2s ease-in-out infinite; }
-.zmz-chevron { transition: transform 0.15s var(--ease-out); }
-.zmz-chevron.open { transform: rotate(180deg); }
+.zmz-reasoning { display: block; }
+.zmz-reasoning-toggle { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 1.7rem; background: none; border: 0; cursor: pointer; font-size: 0.75rem; color: var(--color-muted); padding: 0.12rem 0.25rem; margin-left: -0.25rem; transition: color 0.15s var(--ease-out); }
+.zmz-reasoning-toggle:hover { color: var(--color-ink); }
+.zmz-reasoning-icon { flex: 0 0 auto; }
+.zmz-reasoning-icon.live { color: var(--color-live); animation: zmz-reasoning-pulse 1.2s ease-in-out infinite; }
+.zmz-reasoning-label { flex: 0 0 auto; }
+.zmz-reasoning-sep { flex: 0 0 auto; opacity: 0.65; }
+.zmz-chevron { flex: 0 0 auto; opacity: 0; color: var(--color-muted); transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out); }
+.zmz-reasoning-toggle:hover .zmz-chevron, .zmz-reasoning-toggle:focus-visible .zmz-chevron { opacity: 1; }
+.zmz-chevron.open { opacity: 1; transform: rotate(180deg); }
 .zmz-reasoning-body { margin: 0.4rem 0 0; overflow: hidden; font-size: 0.75rem; color: var(--color-muted); white-space: pre-wrap; }

@@ -1,32 +1,44 @@
-/* ToolCard / ToolGroup — 工具调用卡与折叠组。token 依赖消费端 @theme。
-   执行树分支线（::before）等上下文增强由消费端自己的 CSS 叠加。 */
+/* ToolCard / ToolGroup — 工具调用过程行（v0.9.12 ZCode 式弱化形态）。
+   折叠行是裸文本：图标 + 名称 · 摘要，灰色（muted），无边框、无背景、无徽标；
+   与正文的层级差由颜色深浅承担（正文 ink ≈ 亮，过程行 muted ≈ 60% 亮度）。
+   token 依赖消费端 @theme。 */
 @keyframes zmz-tool-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 .tool-card { position: relative; border-radius: var(--radius-sm); }
-/* 执行树分支线（挂在左侧时间轴上；独立使用时容器需留出左侧空间） */
-.tool-card::before { position: absolute; top: 1.08rem; left: -0.81rem; width: 0.81rem; height: 1px; background: var(--color-line); content: ""; }
-.tool-card-trigger { display: flex; width: 100%; min-height: 2.15rem; align-items: center; gap: 0.5rem; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-ink); padding: 0.38rem 0.4rem; text-align: left; cursor: pointer; transition: background 0.15s var(--ease-out); }
-.tool-card-trigger:hover { background: var(--color-surface); }
-.tool-card-glyph { display: grid; width: 1rem; height: 1rem; flex: 0 0 1rem; place-items: center; border-radius: 50%; color: var(--color-muted); }
-.tool-card.running .tool-card-glyph { color: var(--color-live); animation: zmz-tool-pulse 1s ease-in-out infinite; }
-.tool-card.completed .tool-card-glyph { color: var(--color-success); }
-.tool-card.failed .tool-card-glyph { color: var(--color-danger); }
-.tool-card-label { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.75rem; }
-/* 摘要行（formatToolSummary）：路径/命令用等宽，与 JSON 展开区视觉连续 */
-.tool-card-label-mono { font-family: var(--font-mono); font-size: 0.7rem; }
-.tool-card-duration { flex: 0 0 auto; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.6rem; }
-.tool-card-chevron { flex: 0 0 auto; color: var(--color-muted); transition: transform 0.15s var(--ease-out); }
-.tool-card-chevron.open { transform: rotate(180deg); }
-.tool-card-detail { display: grid; gap: 0.6rem; max-height: 18rem; margin: 0 0 0.25rem 1.5rem; overflow: auto; border-left: 1px solid var(--color-line); padding: 0.45rem 0.65rem; background: color-mix(in oklab, var(--color-surface-strong) 42%, var(--color-surface)); }
+.tool-card-trigger { display: flex; width: 100%; min-height: 1.7rem; align-items: center; gap: 0.45rem; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-muted); padding: 0.12rem 0.25rem; margin-left: -0.25rem; text-align: left; cursor: pointer; transition: color 0.15s var(--ease-out); }
+.tool-card-trigger:hover { color: var(--color-ink); }
+.tool-card-glyph { display: grid; width: 1rem; height: 1rem; flex: 0 0 1rem; place-items: center; color: inherit; }
+.tool-card.running .tool-card-glyph { animation: zmz-tool-pulse 1s ease-in-out infinite; }
+.tool-card.failed .tool-card-trigger { color: var(--color-danger); }
+.tool-card.failed .tool-card-trigger:hover { color: var(--color-danger); filter: brightness(1.15); }
+.tool-card-label { flex: 0 0 auto; font-size: 0.75rem; }
+.tool-card-sep { flex: 0 0 auto; font-size: 0.75rem; opacity: 0.65; }
+.tool-card-summary { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.75rem; }
+/* 摘要正文（formatToolSummaryBody）：路径/命令用等宽，与展开区视觉连续 */
+.tool-card-summary-mono { font-family: var(--font-mono); font-size: 0.7rem; }
+.tool-card-flag { flex: 0 0 auto; color: var(--color-danger); font-size: 0.68rem; font-weight: 500; }
+/* 折叠指示：默认隐藏（裸文本行不放箭头），hover / 展开时浮现，保留可点暗示 */
+.tool-card-chevron { flex: 0 0 auto; opacity: 0; color: var(--color-muted); transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out); }
+.tool-card-trigger:hover .tool-card-chevron, .tool-card-trigger:focus-visible .tool-card-chevron { opacity: 1; }
+.tool-card-chevron.open { opacity: 1; transform: rotate(180deg); }
+/* 详情展开：grid 0fr→1fr 高度过渡（0.2s），内容常驻 DOM 使动画可逆；
+   收起时 0fr + overflow 裁剪 + inert（不可交互）。横向缩进挂在 wrap 上，
+   纵向不设 margin——收起态不允许有高度残漏。 */
+.tool-card-detail-wrap { display: grid; grid-template-rows: 0fr; margin-left: 1.45rem; transition: grid-template-rows 0.2s var(--ease-out); }
+.tool-card-detail-wrap.open { grid-template-rows: 1fr; }
+.tool-card-detail { display: grid; max-height: 18rem; min-height: 0; overflow: auto; border-left: 1px solid var(--color-line); opacity: 0; transition: opacity 0.15s var(--ease-out); }
+.tool-card-detail-wrap.open .tool-card-detail { opacity: 1; }
+.tool-card-detail-pad { display: grid; gap: 0.6rem; padding: 0.4rem 0.65rem; }
 .tool-card-detail-section { display: grid; gap: 0.25rem; }
 .tool-card-detail-label { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .tool-card-detail pre { margin: 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.68rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .tool-card-live-note { color: var(--color-live); font-family: var(--font-mono); font-size: 0.62rem; }
 
-.zmz-tool-group { display: grid; gap: 0.5rem; margin: 0.4rem 0; }
-.zmz-tool-group-trigger { display: flex; align-items: center; gap: 0.5rem; width: 100%; border: 1px solid var(--color-line); border-radius: var(--radius-sm); background: color-mix(in oklab, var(--color-surface) 92%, var(--color-bg)); color: var(--color-ink); padding: 0.4rem 0.6rem; cursor: pointer; transition: border-color 0.15s var(--ease-out); }
-.zmz-tool-group-trigger:hover:not(:disabled) { border-color: var(--color-line-strong); }
-.zmz-tool-group-trigger:disabled { cursor: default; opacity: 0.85; }
-.zmz-tool-group-label { font-family: var(--font-mono); font-size: 0.7rem; }
-.zmz-tool-group-trigger small { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.6rem; }
-.zmz-tool-group-body { display: grid; gap: 0.5rem; padding-left: 0.6rem; border-left: 2px solid var(--color-line); }
+.zmz-tool-group { display: grid; gap: 0.25rem; margin: 0.2rem 0; }
+/* 折叠组行与单行同形态：裸文本弱化行，不再画边框卡片 */
+.zmz-tool-group-trigger { display: flex; align-items: center; gap: 0.45rem; width: fit-content; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-muted); padding: 0.12rem 0.25rem; margin-left: -0.25rem; cursor: pointer; transition: color 0.15s var(--ease-out); }
+.zmz-tool-group-trigger:hover:not(:disabled) { color: var(--color-ink); }
+.zmz-tool-group-trigger:disabled { cursor: default; }
+.zmz-tool-group-label { font-size: 0.75rem; }
+.zmz-tool-group-trigger small { color: var(--color-muted); font-size: 0.68rem; opacity: 0.85; }
+.zmz-tool-group-body { display: grid; gap: 0.25rem; padding-left: 0.6rem; border-left: 1px solid var(--color-line); }

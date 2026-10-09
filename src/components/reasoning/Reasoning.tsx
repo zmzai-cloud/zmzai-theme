@@ -7,11 +7,11 @@ import { Icon } from "../../components/icon/Icon";
 import "./reasoning.css";
 
 /**
- * Reasoning — 思考过程折叠块（v0.9.8 计时）。
+ * Reasoning — 思考过程折叠行（v0.9.12 ZCode 式）。
  *
- * 标签行显示思考时长：文本持续增长时「思考中 Ns」，停止增长 1.5s 后
- * 「已思考 Ns」——流式体验与主流（Claude / o3 的 Thought for Xs）对齐。
- * 运行中自动展开（呼吸圆点），完成后收起为标签行，点击回看。
+ * 折叠态是一行灰色弱化文本：`[脑图标] 思考 · 持续了 Ns`，无边框、无背景，
+ * 与工具过程行（ToolCard）同层级同形态；进行中为「思考中 Ns」且图标呼吸。
+ * 运行中自动展开，完成后收起为标签行，点击回看。
  *
  * @example
  * <Reasoning text={chainOfThought} active={isStreaming} />
@@ -46,17 +46,17 @@ export function Reasoning({ text, active = false }: { text: string; active?: boo
     return () => clearInterval(timer);
   }, [thinking, active]);
 
-  const label = thinking
-    ? `思考中 ${seconds ? `${seconds}s` : "…"}`
-    : seconds > 0
-      ? `已思考 ${seconds}s`
-      : "思考过程";
-
   return (
     <div className="zmz-reasoning">
       <button type="button" className="zmz-reasoning-toggle" aria-expanded={expanded} onClick={() => setOpen((value) => !value)}>
-        <span className={`zmz-reasoning-dot ${active || thinking ? "live" : ""}`} aria-hidden />
-        <span>{label}</span>
+        <Icon name="brain" size={13} strokeWidth={1.4} className={active || thinking ? "zmz-reasoning-icon live" : "zmz-reasoning-icon"} />
+        <span className="zmz-reasoning-label">{thinking ? `思考中${seconds ? ` ${seconds}s` : "…"}` : "思考"}</span>
+        {!thinking && seconds > 0 && (
+          <>
+            <span className="zmz-reasoning-sep" aria-hidden>·</span>
+            <span>持续了 {seconds}s</span>
+          </>
+        )}
         <Icon name="chevron-down" size={11} className={expanded ? "zmz-chevron open" : "zmz-chevron"} />
       </button>
       <AnimatePresence initial={false}>
